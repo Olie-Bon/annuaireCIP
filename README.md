@@ -2,7 +2,7 @@
 
 Application macOS/iOS pour les professionnels de l'insertion professionnelle (CIP) du territoire marseillais.
 
-Développée par **Olivier Bonaldo** dans le cadre d'un stage de formation CIP (Conseiller en Insertion Professionnelle) à Marseille.
+Développée par **Olivier Bonaldo** dans le cadre d'une formation CIP (Conseiller en Insertion Professionnelle) à Marseille.
 
 ## Objectif
 
@@ -32,4 +32,4 @@ L'objectif est d'intégrer l'API data·inclusion pour disposer de données en te
 
 ## Statut
 
-Projet en développement actif — version initiale testée en structure d'insertion (APCARS, Marseille) prévue juin 2026.
+Projet en développement actif — l'application est testée en conditions réelles durant la durée de la formation CIP.
