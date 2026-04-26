@@ -8,7 +8,7 @@ struct DIService: Codable, Identifiable {
     let nom: String
     let description: String
     let lienSource: String?
-    let dateMaj: String
+    let dateMaj: Int
     let type: String?
     let thematiques: [String]?
     let frais: String?
@@ -32,6 +32,10 @@ struct DIService: Codable, Identifiable {
     let modesMobilisation: [String]?
     let mobilisablePar: [String]?
     let mobilisationPrecisions: String?
+    let horairesAccueil: String?
+    let scoreQualite: Double?
+    let volumeHoraireHebdomadaire: Double?
+    let nombreSemaines: Int?
 
     enum CodingKeys: String, CodingKey {
         case source
@@ -57,6 +61,15 @@ struct DIService: Codable, Identifiable {
         case modesMobilisation = "modes_mobilisation"
         case mobilisablePar = "mobilisable_par"
         case mobilisationPrecisions = "mobilisation_precisions"
+        case horairesAccueil = "horaires_accueil"
+        case scoreQualite = "score_qualite"
+        case volumeHoraireHebdomadaire = "volume_horaire_hebdomadaire"
+        case nombreSemaines = "nombre_semaines"
+    }
+
+    var dateMajFormatted: String {
+        let date = Date(timeIntervalSince1970: Double(dateMaj) / 1000)
+        return date.formatted(date: .abbreviated, time: .omitted)
     }
 
     var coordinate: CLLocationCoordinate2D? {
