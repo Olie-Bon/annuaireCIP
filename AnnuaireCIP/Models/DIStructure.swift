@@ -5,7 +5,7 @@ struct DIStructure: Codable, Identifiable {
     let source: String
     let id: String
     let nom: String
-    let dateMaj: String
+    let dateMaj: Int
     let description: String?
     let lienSource: String?
     let siret: String?
@@ -49,6 +49,11 @@ struct DIStructure: Codable, Identifiable {
     var coordinate: CLLocationCoordinate2D? {
         guard let lat = latitude, let lon = longitude else { return nil }
         return CLLocationCoordinate2D(latitude: lat, longitude: lon)
+    }
+
+    var dateMajFormatted: String {
+        let date = Date(timeIntervalSince1970: Double(dateMaj) / 1000)
+        return date.formatted(date: .abbreviated, time: .omitted)
     }
 
     var addressLine: String {
