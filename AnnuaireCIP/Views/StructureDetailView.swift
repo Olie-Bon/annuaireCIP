@@ -42,7 +42,7 @@ struct StructureDetailView: View {
                 if let siret = structure.siret {
                     LabeledContent("SIRET", value: siret)
                 }
-                LabeledContent("Mise à jour", value: structure.dateMaj)
+                LabeledContent("Mise à jour", value: structure.dateMajFormatted)
                 if let score = structure.scoreQualite {
                     LabeledContent("Score qualité", value: String(format: "%.0f %%", score * 100))
                 }
@@ -64,8 +64,10 @@ struct StructureDetailView: View {
                 }
             }
         }
-        .listStyle(.insetGrouped)
+        .listStyle(.inset)
         .navigationTitle(structure.nom)
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 }
