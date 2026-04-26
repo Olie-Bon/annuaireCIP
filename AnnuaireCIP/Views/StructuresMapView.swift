@@ -84,7 +84,9 @@ struct CombinedMapView: View {
             selectedService = nil
         }
         .navigationTitle("Carte (\(count))")
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Picker("Couche", selection: $layer) {
