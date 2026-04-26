@@ -99,15 +99,17 @@ struct ServiceDetailView: View {
             // Identification
             Section("Identification") {
                 LabeledContent("Source", value: service.source)
-                LabeledContent("Mise à jour", value: service.dateMaj)
+                LabeledContent("Mise à jour", value: service.dateMajFormatted)
                 if let lien = service.lienSource {
                     LabeledContent("Lien source", value: lien)
                 }
             }
         }
-        .listStyle(.insetGrouped)
+        .listStyle(.inset)
         .navigationTitle(service.nom)
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
     }
 }
 
