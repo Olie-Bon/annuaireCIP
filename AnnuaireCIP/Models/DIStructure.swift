@@ -5,7 +5,7 @@ struct DIStructure: Codable, Identifiable {
     let source: String
     let id: String
     let nom: String
-    let dateMaj: Int
+    let dateMaj: String
     let description: String?
     let lienSource: String?
     let siret: String?
@@ -24,7 +24,7 @@ struct DIStructure: Codable, Identifiable {
     let reseauxPorteurs: [String]?
     let adresseCertifiee: Bool?
     let scoreQualite: Double?
-    let doublons: [String]?
+    let doublons: [DIDoublon]?
 
     enum CodingKeys: String, CodingKey {
         case source, id, nom
@@ -52,7 +52,9 @@ struct DIStructure: Codable, Identifiable {
     }
 
     var dateMajFormatted: String {
-        let date = Date(timeIntervalSince1970: Double(dateMaj) / 1000)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        guard let date = formatter.date(from: dateMaj) else { return dateMaj }
         return date.formatted(date: .abbreviated, time: .omitted)
     }
 
@@ -61,4 +63,9 @@ struct DIStructure: Codable, Identifiable {
             .compactMap { $0 }
             .joined(separator: ", ")
     }
+}
+
+struct DIDoublon: Codable {
+    let source: String
+    let id: String
 }

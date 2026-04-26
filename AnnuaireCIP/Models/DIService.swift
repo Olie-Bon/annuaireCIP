@@ -8,7 +8,7 @@ struct DIService: Codable, Identifiable {
     let nom: String
     let description: String
     let lienSource: String?
-    let dateMaj: Int
+    let dateMaj: String
     let type: String?
     let thematiques: [String]?
     let frais: String?
@@ -68,7 +68,9 @@ struct DIService: Codable, Identifiable {
     }
 
     var dateMajFormatted: String {
-        let date = Date(timeIntervalSince1970: Double(dateMaj) / 1000)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        guard let date = formatter.date(from: dateMaj) else { return dateMaj }
         return date.formatted(date: .abbreviated, time: .omitted)
     }
 

@@ -92,7 +92,7 @@ actor NetworkService {
 
 // MARK: - Pagination envelope
 
-private struct PagedResponse<T: Decodable>: Decodable {
+struct PagedResponse<T: Decodable>: Decodable {
     let items: [T]
     let total: Int
 }
