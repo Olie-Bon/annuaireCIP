@@ -32,3 +32,4 @@ Pods/
 Config/secrets.plist
 *.env
 token.txt
+*.xcschememanagement.plist
