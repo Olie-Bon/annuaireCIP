@@ -26,12 +26,17 @@ struct ScoreQualiteView: View {
     private static let heights: [CGFloat] = [5, 8, 11, 14]
 
     var body: some View {
-        HStack(alignment: .bottom, spacing: 2) {
-            ForEach(0..<4, id: \.self) { i in
-                RoundedRectangle(cornerRadius: 2)
-                    .fill(i < activeCount ? activeColor : Color.secondary.opacity(0.25))
-                    .frame(width: 4, height: Self.heights[i])
+        HStack(alignment: .bottom, spacing: 5) {
+            HStack(alignment: .bottom, spacing: 2) {
+                ForEach(0..<4, id: \.self) { i in
+                    RoundedRectangle(cornerRadius: 2)
+                        .fill(i < activeCount ? activeColor : Color.secondary.opacity(0.25))
+                        .frame(width: 4, height: Self.heights[i])
+                }
             }
+            Text("\(Int(score * 100)) %")
+                .font(.caption2)
+                .foregroundStyle(activeColor)
         }
     }
 }

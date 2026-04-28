@@ -2,6 +2,7 @@ import SwiftUI
 
 struct StructureDetailView: View {
     let structure: DIStructure
+    var services: [DIService] = []
 
     var body: some View {
         List {
@@ -64,6 +65,32 @@ struct StructureDetailView: View {
                 Section("Réseaux porteurs") {
                     ForEach(reseaux, id: \.self) { reseau in
                         Text(reseau)
+                    }
+                }
+            }
+
+            // Services associés
+            if !services.isEmpty {
+                Section("Services associés (\(services.count))") {
+                    ForEach(services) { service in
+                        NavigationLink(destination: ServiceDetailView(service: service)) {
+                            Label {
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(service.nom)
+                                        .font(.subheadline)
+                                        .foregroundStyle(.primary)
+                                    if let type_ = service.type {
+                                        Text(type_)
+                                            .font(.caption)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                }
+                            } icon: {
+                                Image(systemName: "hands.and.sparkles.fill")
+                                    .foregroundStyle(.orange)
+                            }
+                            .padding(.vertical, 2)
+                        }
                     }
                 }
             }

@@ -29,6 +29,7 @@ struct CombinedMapView: View {
 
     var body: some View {
         Map(position: $position) {
+            UserAnnotation()
             if layer == .structures {
                 ForEach(locatableStructures) { structure in
                     Annotation(structure.nom, coordinate: structure.coordinate!) {
@@ -69,7 +70,11 @@ struct CombinedMapView: View {
         .safeAreaInset(edge: .bottom) {
             VStack(spacing: 0) {
                 if let structure = selectedStructure {
-                    StructureCallout(structure: structure, onDismiss: { selectedStructure = nil })
+                    StructureCallout(
+                        structure: structure,
+                        services: services.filter { $0.structureId == structure.id },
+                        onDismiss: { selectedStructure = nil }
+                    )
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                 } else if let service = selectedService {
                     ServiceCallout(service: service, onDismiss: { selectedService = nil })
@@ -105,6 +110,7 @@ struct CombinedMapView: View {
 
 private struct StructureCallout: View {
     let structure: DIStructure
+    let services: [DIService]
     let onDismiss: () -> Void
 
     var body: some View {
@@ -131,7 +137,7 @@ private struct StructureCallout: View {
                         .foregroundStyle(.secondary)
                         .font(.title3)
                 }
-                NavigationLink(destination: StructureDetailView(structure: structure)) {
+                NavigationLink(destination: StructureDetailView(structure: structure, services: services)) {
                     Image(systemName: "chevron.right.circle.fill")
                         .foregroundStyle(.tint)
                         .font(.title3)

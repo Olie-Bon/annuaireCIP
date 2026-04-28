@@ -51,7 +51,10 @@ private struct StructuresTab: View {
                     ContentUnavailableView.search(text: query)
                 } else {
                     List(filtered) { structure in
-                        NavigationLink(destination: StructureDetailView(structure: structure)) {
+                        NavigationLink(destination: StructureDetailView(
+                            structure: structure,
+                            services: vm.services.filter { $0.structureId == structure.id }
+                        )) {
                             StructureRow(structure: structure)
                         }
                     }
