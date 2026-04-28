@@ -36,13 +36,15 @@ L'application interroge l'API data·inclusion (`api.data.inclusion.beta.gouv.fr`
 AnnuaireCIP/
 ├── Models/
 │   ├── DIStructure.swift       # Structure d'insertion (Codable, CLLocationCoordinate2D)
-│   └── DIService.swift         # Service d'insertion (Codable, CLLocationCoordinate2D)
+│   ├── DIService.swift         # Service d'insertion (Codable, CLLocationCoordinate2D)
+│   └── DIReferentiel.swift     # Item de référentiel (value, label, description?)
 ├── Services/
-│   ├── NetworkService.swift    # Client async/await — API data·inclusion (pagination auto)
+│   ├── NetworkService.swift    # Client async/await — API data·inclusion (pagination auto + référentiels)
 │   └── MockDataService.swift   # Chargement depuis les JSON bundle (mode hors-ligne)
 ├── ViewModels/
-│   └── AnnuaireViewModel.swift # @Observable — orchestre le chargement des données
+│   └── AnnuaireViewModel.swift # @Observable — chargement données + état des filtres actifs
 ├── Views/
+│   ├── FiltresView.swift          # Sidebar inspector filtres (thématiques, publics, modes, frais, sources)
 │   ├── StructureDetailView.swift  # Détail d'une structure (coordonnées, horaires, SIRET…)
 │   ├── ServiceDetailView.swift    # Détail d'un service (publics, frais, mobilisation…)
 │   └── StructuresMapView.swift    # Carte fusionnée structures + services (MapKit)
@@ -59,7 +61,7 @@ AnnuaireCIP/
 - [x] `DIService` — 28 champs mappés (thématiques, publics, frais, modes de mobilisation…)
 
 ### Services réseau
-- [x] `NetworkService` — appels async/await avec pagination automatique (`/structures`, `/services`, `/search/services` avec lat/lon + thématiques/publics). Token via variable d'environnement `DI_API_TOKEN`.
+- [x] `NetworkService` — appels async/await avec pagination automatique (`/structures`, `/services`, `/search/services`). Chargement parallèle des 5 référentiels data·inclusion (`/api/v1/doc/thematiques`, `/publics`, `/modes-accueil`, `/types`, `/frais`). Token via `DI_API_TOKEN`.
 - [x] `MockDataService` — chargement des données réelles depuis le bundle JSON pour le développement hors-API
 
 ### Interface
@@ -68,10 +70,12 @@ AnnuaireCIP/
 - [x] Vue détail structure — sections coordonnées, description, horaires, identification, accessibilité, réseaux
 - [x] Vue détail service — sections description, catégorie, publics, frais, accueil, contact, mobilisation
 - [x] Carte MapKit fusionnée — Picker segmenté Structures / Services, annotations colorées, callout avec lien vers le détail
+- [x] **Filtres avancés** — sidebar inspector (macOS) / sheet (iOS), filtres en temps réel :
+  - Services : 16 catégories thématiques, publics cibles, modes d'accueil, types de service, frais
+  - Structures : filtre par source de données
+  - Fallback automatique sur les valeurs présentes dans les données si l'API référentiel est indisponible
 
-### En cours / À venir
-- [x] Accès à l'API data·inclusion production (`DI_API_TOKEN`, URL prod, route `/search/services`)
-- [ ] Filtres avancés (thématique, public, commune)
+### À venir
 - [ ] Lien structure → liste de ses services
 - [ ] Localisation de l'utilisateur sur la carte
 
