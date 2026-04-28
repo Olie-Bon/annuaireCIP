@@ -85,7 +85,9 @@ final class AnnuaireViewModel {
                 $0.frais.map { selectedFrais.contains($0) } ?? false
             }
         }
-        return result
+        return result.sorted {
+            ($0.scoreQualite ?? -1) > ($1.scoreQualite ?? -1)
+        }
     }
 
     func filteredStructures(query: String = "") -> [DIStructure] {
@@ -100,7 +102,9 @@ final class AnnuaireViewModel {
         if !selectedSources.isEmpty {
             result = result.filter { selectedSources.contains($0.source) }
         }
-        return result
+        return result.sorted {
+            ($0.scoreQualite ?? -1) > ($1.scoreQualite ?? -1)
+        }
     }
 
     func load(codeDepartement: String = "13") async {

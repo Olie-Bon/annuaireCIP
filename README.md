@@ -76,6 +76,7 @@ AnnuaireCIP/
   - Fallback automatique sur les valeurs présentes dans les données si l'API référentiel est indisponible
 - [x] **Score qualité** — indicateur 4 barres style signal réseau (rouge → orange → jaune → vert) affiché à côté de la date de mise à jour dans les vues détail structures et services
 - [x] **Liens cliquables** dans les vues détail — téléphone (`tel:`), email (`mailto:`), site web et liens source (`https://`) s'ouvrent dans l'application système appropriée
+- [x] **Tri par score qualité** — `filteredStructures()` et `filteredServices()` retournent les résultats triés par `score_qualite` décroissant ; les fiches sans score apparaissent en bas de liste
 
 ### À venir
 - [ ] Lien structure → liste de ses services
