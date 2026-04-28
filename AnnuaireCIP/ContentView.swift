@@ -32,15 +32,9 @@ struct ContentView: View {
 private struct StructuresTab: View {
     let vm: AnnuaireViewModel
     @State private var query = ""
+    @State private var showFiltres = false
 
-    private var filtered: [DIStructure] {
-        guard !query.isEmpty else { return vm.structures }
-        return vm.structures.filter {
-            $0.nom.localizedCaseInsensitiveContains(query) ||
-            ($0.commune?.localizedCaseInsensitiveContains(query) ?? false) ||
-            ($0.description?.localizedCaseInsensitiveContains(query) ?? false)
-        }
-    }
+    private var filtered: [DIStructure] { vm.filteredStructures(query: query) }
 
     var body: some View {
         NavigationStack {
@@ -66,6 +60,19 @@ private struct StructuresTab: View {
             }
             .navigationTitle("Structures (\(filtered.count))")
             .searchable(text: $query, prompt: "Nom, commune, description…")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button { showFiltres.toggle() } label: {
+                        Image(systemName: vm.hasActiveStructureFilters
+                              ? "line.3.horizontal.decrease.circle.fill"
+                              : "line.3.horizontal.decrease.circle")
+                    }
+                }
+            }
+            .inspector(isPresented: $showFiltres) {
+                FiltresView(vm: vm, mode: .structures)
+                    .inspectorColumnWidth(min: 260, ideal: 300, max: 360)
+            }
         }
     }
 }
@@ -75,16 +82,10 @@ private struct StructuresTab: View {
 private struct ServicesTab: View {
     let vm: AnnuaireViewModel
     @State private var query = ""
+    @State private var showFiltres = false
 
     private var filtered: [DIService] {
-        guard !query.isEmpty else { return vm.services }
-        return vm.services.filter {
-            $0.nom.localizedCaseInsensitiveContains(query) ||
-            $0.description.localizedCaseInsensitiveContains(query) ||
-            ($0.commune?.localizedCaseInsensitiveContains(query) ?? false) ||
-            ($0.type?.localizedCaseInsensitiveContains(query) ?? false) ||
-            ($0.thematiques?.contains { $0.localizedCaseInsensitiveContains(query) } ?? false)
-        }
+        vm.filteredServices(query: query)
     }
 
     var body: some View {
@@ -111,6 +112,19 @@ private struct ServicesTab: View {
             }
             .navigationTitle("Services (\(filtered.count))")
             .searchable(text: $query, prompt: "Nom, type, thématique, commune…")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button { showFiltres.toggle() } label: {
+                        Image(systemName: vm.hasActiveFilters
+                              ? "line.3.horizontal.decrease.circle.fill"
+                              : "line.3.horizontal.decrease.circle")
+                    }
+                }
+            }
+            .inspector(isPresented: $showFiltres) {
+                FiltresView(vm: vm, mode: .services)
+                    .inspectorColumnWidth(min: 260, ideal: 300, max: 360)
+            }
         }
     }
 }

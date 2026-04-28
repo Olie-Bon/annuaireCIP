@@ -108,6 +108,41 @@ actor NetworkService {
         publics?.forEach { queryItems.append(URLQueryItem(name: "publics", value: $0)) }
         return try await fetchAllPages(path: "/api/v1/search/services", baseQueryItems: queryItems)
     }
+
+    // MARK: - Referentiels (direct arrays, not paginated)
+
+    private func fetchReferentiel(path: String) async throws -> [DIReferentielItem] {
+        let request = try makeRequest(path: path, queryItems: [])
+        let (data, response) = try await urlSession.data(for: request)
+        if let http = response as? HTTPURLResponse, !(200...299).contains(http.statusCode) {
+            throw NetworkError.httpError(statusCode: http.statusCode)
+        }
+        do {
+            return try JSONDecoder().decode([DIReferentielItem].self, from: data)
+        } catch {
+            throw NetworkError.decodingError(error)
+        }
+    }
+
+    func fetchThematiques() async throws -> [DIReferentielItem] {
+        try await fetchReferentiel(path: "/api/v1/doc/thematiques")
+    }
+
+    func fetchPublics() async throws -> [DIReferentielItem] {
+        try await fetchReferentiel(path: "/api/v1/doc/publics")
+    }
+
+    func fetchModesAccueil() async throws -> [DIReferentielItem] {
+        try await fetchReferentiel(path: "/api/v1/doc/modes-accueil")
+    }
+
+    func fetchTypesServices() async throws -> [DIReferentielItem] {
+        try await fetchReferentiel(path: "/api/v1/doc/types")
+    }
+
+    func fetchFrais() async throws -> [DIReferentielItem] {
+        try await fetchReferentiel(path: "/api/v1/doc/frais")
+    }
 }
 
 // MARK: - Pagination envelope
