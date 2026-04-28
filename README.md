@@ -54,6 +54,19 @@ AnnuaireCIP/
     └── services-marseille-dev.json
 ```
 
+## Scripts
+
+### `scripts/update-mock-data.sh`
+
+Met à jour les fichiers JSON de développement (`structures-marseille-dev.json`, `services-marseille-dev.json`) depuis l'API data·inclusion production.
+
+```bash
+export DI_API_TOKEN=<token>
+bash scripts/update-mock-data.sh
+```
+
+Requiert la variable d'environnement `DI_API_TOKEN` (le même token que dans le schéma Xcode). Récupère 50 structures et 50 services du département 13.
+
 ## Avancement
 
 ### Modèles
