@@ -2,6 +2,7 @@ import Foundation
 
 enum NetworkError: Error, LocalizedError {
     case invalidURL
+    case missingToken
     case httpError(statusCode: Int)
     case decodingError(Error)
 
@@ -9,6 +10,8 @@ enum NetworkError: Error, LocalizedError {
         switch self {
         case .invalidURL:
             return "URL invalide"
+        case .missingToken:
+            return "Token API manquant. Ajoutez DI_API_TOKEN dans les variables d'environnement du schéma Xcode."
         case .httpError(let code):
             return "Erreur HTTP \(code)"
         case .decodingError(let error):
@@ -20,8 +23,7 @@ enum NetworkError: Error, LocalizedError {
 actor NetworkService {
     static let shared = NetworkService()
 
-    private let baseURL = "https://api-staging.data.inclusion.gouv.fr"
-    private let token = "VOTRE_TOKEN_ICI"
+    private let baseURL = "https://api.data.inclusion.beta.gouv.fr"
     private let pageSize = 100
 
     private var urlSession: URLSession {
@@ -34,6 +36,9 @@ actor NetworkService {
         var components = URLComponents(string: baseURL + path)
         components?.queryItems = queryItems
         guard let url = components?.url else { throw NetworkError.invalidURL }
+        guard let token = ProcessInfo.processInfo.environment["DI_API_TOKEN"], !token.isEmpty else {
+            throw NetworkError.missingToken
+        }
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         return request
@@ -87,6 +92,21 @@ actor NetworkService {
     func fetchServices(codeDepartement: String = "13") async throws -> [DIService] {
         let queryItems = [URLQueryItem(name: "code_departement", value: codeDepartement)]
         return try await fetchAllPages(path: "/api/v1/services", baseQueryItems: queryItems)
+    }
+
+    func searchServices(
+        lat: Double,
+        lon: Double,
+        thematiques: [String]? = nil,
+        publics: [String]? = nil
+    ) async throws -> [DIService] {
+        var queryItems = [
+            URLQueryItem(name: "lat", value: String(lat)),
+            URLQueryItem(name: "lon", value: String(lon))
+        ]
+        thematiques?.forEach { queryItems.append(URLQueryItem(name: "thematiques", value: $0)) }
+        publics?.forEach { queryItems.append(URLQueryItem(name: "publics", value: $0)) }
+        return try await fetchAllPages(path: "/api/v1/search/services", baseQueryItems: queryItems)
     }
 }
 
