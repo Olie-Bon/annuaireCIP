@@ -22,7 +22,7 @@ Permettre aux CIP et travailleurs sociaux d'accéder rapidement à l'annuaire de
 
 L'application s'appuie sur le référentiel open data de l'offre d'insertion sociale et professionnelle fourni par [data·inclusion](https://data.inclusion.gouv.fr), Plateforme de l'inclusion.
 
-L'objectif est d'intégrer l'API data·inclusion pour disposer de données en temps réel, filtrées sur le département 13.
+L'application interroge l'API data·inclusion (`api.data.inclusion.beta.gouv.fr`) pour disposer de données en temps réel, avec recherche géolocalisée et filtres par thématique et public cible.
 
 ## Contexte d'usage
 
@@ -59,7 +59,7 @@ AnnuaireCIP/
 - [x] `DIService` — 28 champs mappés (thématiques, publics, frais, modes de mobilisation…)
 
 ### Services réseau
-- [x] `NetworkService` — appels async/await avec pagination automatique (endpoint `/structures` et `/services`, filtre `code_departement=13`)
+- [x] `NetworkService` — appels async/await avec pagination automatique (`/structures`, `/services`, `/search/services` avec lat/lon + thématiques/publics). Token via variable d'environnement `DI_API_TOKEN`.
 - [x] `MockDataService` — chargement des données réelles depuis le bundle JSON pour le développement hors-API
 
 ### Interface
@@ -70,7 +70,7 @@ AnnuaireCIP/
 - [x] Carte MapKit fusionnée — Picker segmenté Structures / Services, annotations colorées, callout avec lien vers le détail
 
 ### En cours / À venir
-- [ ] Accès à l'API data·inclusion staging (token en attente)
+- [x] Accès à l'API data·inclusion production (`DI_API_TOKEN`, URL prod, route `/search/services`)
 - [ ] Filtres avancés (thématique, public, commune)
 - [ ] Lien structure → liste de ses services
 - [ ] Localisation de l'utilisateur sur la carte
@@ -79,4 +79,4 @@ AnnuaireCIP/
 
 Projet en développement actif — l'application est testée en conditions réelles durant la durée de la formation CIP.
 
-> Mode actuel : **données mock** (JSON bundle). Basculer vers l'API réelle en remplaçant `MockDataService` par `NetworkService` dans `AnnuaireViewModel`.
+> Mode actuel : **API data·inclusion production**. Requiert la variable d'environnement `DI_API_TOKEN` dans le schéma Xcode (Product > Scheme > Edit Scheme > Run > Environment Variables).
