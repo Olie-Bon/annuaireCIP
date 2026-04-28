@@ -70,10 +70,10 @@ struct ServiceDetailView: View {
                         LabeledContent("Nom", value: contact)
                     }
                     if let tel = service.telephone {
-                        LabeledContent("Téléphone", value: tel)
+                        LabeledLink(label: "Téléphone", rawValue: tel, scheme: .phone)
                     }
                     if let email = service.courriel {
-                        LabeledContent("Email", value: email)
+                        LabeledLink(label: "Email", rawValue: email, scheme: .mail)
                     }
                 }
             }
@@ -91,7 +91,7 @@ struct ServiceDetailView: View {
                         Text(precisions).font(.body)
                     }
                     if let lien = service.lienMobilisation {
-                        LabeledContent("Lien", value: lien)
+                        LabeledLink(label: "Lien", rawValue: lien, scheme: .web)
                     }
                 }
             }
@@ -99,9 +99,16 @@ struct ServiceDetailView: View {
             // Identification
             Section("Identification") {
                 LabeledContent("Source", value: service.source)
-                LabeledContent("Mise à jour", value: service.dateMajFormatted)
+                LabeledContent("Mise à jour") {
+                    HStack(spacing: 8) {
+                        Text(service.dateMajFormatted)
+                        if let score = service.scoreQualite {
+                            ScoreQualiteView(score: score)
+                        }
+                    }
+                }
                 if let lien = service.lienSource {
-                    LabeledContent("Lien source", value: lien)
+                    LabeledLink(label: "Lien source", rawValue: lien, scheme: .web)
                 }
             }
         }

@@ -74,6 +74,8 @@ AnnuaireCIP/
   - Services : 16 catégories thématiques, publics cibles, modes d'accueil, types de service, frais
   - Structures : filtre par source de données
   - Fallback automatique sur les valeurs présentes dans les données si l'API référentiel est indisponible
+- [x] **Score qualité** — indicateur 4 barres style signal réseau (rouge → orange → jaune → vert) affiché à côté de la date de mise à jour dans les vues détail structures et services
+- [x] **Liens cliquables** dans les vues détail — téléphone (`tel:`), email (`mailto:`), site web et liens source (`https://`) s'ouvrent dans l'application système appropriée
 
 ### À venir
 - [ ] Lien structure → liste de ses services

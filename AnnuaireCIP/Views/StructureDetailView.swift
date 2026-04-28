@@ -11,13 +11,13 @@ struct StructureDetailView: View {
                     LabeledContent("Adresse", value: structure.addressLine)
                 }
                 if let tel = structure.telephone {
-                    LabeledContent("Téléphone", value: tel)
+                    LabeledLink(label: "Téléphone", rawValue: tel, scheme: .phone)
                 }
                 if let email = structure.courriel {
-                    LabeledContent("Email", value: email)
+                    LabeledLink(label: "Email", rawValue: email, scheme: .mail)
                 }
                 if let web = structure.siteWeb {
-                    LabeledContent("Site web", value: web)
+                    LabeledLink(label: "Site web", rawValue: web, scheme: .web)
                 }
             }
 
@@ -42,9 +42,13 @@ struct StructureDetailView: View {
                 if let siret = structure.siret {
                     LabeledContent("SIRET", value: siret)
                 }
-                LabeledContent("Mise à jour", value: structure.dateMajFormatted)
-                if let score = structure.scoreQualite {
-                    LabeledContent("Score qualité", value: String(format: "%.0f %%", score * 100))
+                LabeledContent("Mise à jour") {
+                    HStack(spacing: 8) {
+                        Text(structure.dateMajFormatted)
+                        if let score = structure.scoreQualite {
+                            ScoreQualiteView(score: score)
+                        }
+                    }
                 }
             }
 
