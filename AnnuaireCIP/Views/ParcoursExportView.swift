@@ -166,7 +166,7 @@ private struct ParcoursEntrySection: View {
             Text(entry.frein.titre)
                 .font(.headline)
 
-            Text(entry.frein.description)
+            Text((try? AttributedString(markdown: entry.frein.description)) ?? AttributedString(entry.frein.description))
                 .font(.body)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
