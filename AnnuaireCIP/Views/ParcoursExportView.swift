@@ -24,13 +24,22 @@ struct ParcoursExportSheet: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Fermer") { dismiss() }
                 }
-                ToolbarItem(placement: .primaryAction) {
-                    exportButton
-                }
-                if let url = pdfURL {
-                    ToolbarItem(placement: .primaryAction) {
+                ToolbarItemGroup(placement: .primaryAction) {
+                    if isRendering {
+                        ProgressView()
+                    } else if let url = pdfURL {
                         Button { saveToDownloads(url) } label: {
                             Label("Télécharger", systemImage: "arrow.down.circle.fill")
+                        }
+                        ShareLink(
+                            item: url,
+                            preview: SharePreview("Parcours.pdf", image: Image(systemName: "doc.richtext"))
+                        ) {
+                            Label("Partager", systemImage: "square.and.arrow.up")
+                        }
+                    } else {
+                        Button { Task { await renderPDF() } } label: {
+                            Label("Générer PDF", systemImage: "doc.badge.plus")
                         }
                     }
                 }
@@ -59,24 +68,6 @@ struct ParcoursExportSheet: View {
         try? FileManager.default.removeItem(at: dest)
         try? FileManager.default.copyItem(at: source, to: dest)
         showDownloadSuccess = true
-    }
-
-    @ViewBuilder
-    private var exportButton: some View {
-        if isRendering {
-            ProgressView()
-        } else if let url = pdfURL {
-            ShareLink(
-                item: url,
-                preview: SharePreview("Parcours.pdf", image: Image(systemName: "doc.richtext"))
-            ) {
-                Label("Partager", systemImage: "square.and.arrow.up")
-            }
-        } else {
-            Button { Task { await renderPDF() } } label: {
-                Label("Générer PDF", systemImage: "doc.badge.plus")
-            }
-        }
     }
 
     @MainActor
