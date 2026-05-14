@@ -11,6 +11,8 @@ Permettre aux CIP et travailleurs sociaux d'accéder rapidement à l'annuaire de
 - Recherche par nom, adresse, thématique ou public cible
 - Visualisation cartographique des structures et services
 - Navigation rapide entre structures et leurs services associés
+- Consultation des freins à l'emploi avec signaux de repérage, ressources terrain et notes CIP
+- Recherche de services data·inclusion filtrés par frein
 
 ## Stack technique
 
@@ -37,21 +39,25 @@ AnnuaireCIP/
 ├── Models/
 │   ├── DIStructure.swift       # Structure d'insertion (Codable, CLLocationCoordinate2D)
 │   ├── DIService.swift         # Service d'insertion (Codable, CLLocationCoordinate2D)
-│   └── DIReferentiel.swift     # Item de référentiel (value, label, description?)
+│   ├── DIReferentiel.swift     # Item de référentiel (value, label, description?)
+│   └── Frein.swift             # Frein à l'emploi + RessourceTerrain (corpus CIP)
 ├── Services/
 │   ├── NetworkService.swift    # Client async/await — API data·inclusion (pagination auto + référentiels)
-│   └── MockDataService.swift   # Chargement depuis les JSON bundle (mode hors-ligne)
+│   ├── MockDataService.swift   # Chargement depuis les JSON bundle (mode hors-ligne)
+│   └── FreinsService.swift     # Chargement de freins.json depuis le bundle
 ├── ViewModels/
 │   └── AnnuaireViewModel.swift # @Observable — chargement données + état des filtres actifs
 ├── Views/
 │   ├── FiltresView.swift          # Sidebar inspector filtres (thématiques, publics, modes, frais, sources)
 │   ├── StructureDetailView.swift  # Détail d'une structure (coordonnées, horaires, SIRET…)
 │   ├── ServiceDetailView.swift    # Détail d'un service (publics, frais, mobilisation…)
-│   └── StructuresMapView.swift    # Carte fusionnée structures + services (MapKit)
-├── ContentView.swift           # TabView : Structures | Services | Carte
+│   ├── StructuresMapView.swift    # Carte fusionnée structures + services (MapKit)
+│   └── FreinsView.swift           # Liste des freins + détail (signaux, ressources, notes CIP, services DI)
+├── ContentView.swift           # TabView : Structures | Services | Carte | Parcours
 └── Resources/
     ├── structures-marseille-dev.json
-    └── services-marseille-dev.json
+    ├── services-marseille-dev.json
+    └── freins.json             # 23 freins à l'emploi (corpus CIP Marseille)
 ```
 
 ## Scripts
@@ -66,6 +72,16 @@ bash scripts/update-mock-data.sh
 ```
 
 Requiert la variable d'environnement `DI_API_TOKEN` (le même token que dans le schéma Xcode). Récupère 50 structures et 50 services du département 13.
+
+### `scripts/convert_freins.py`
+
+Convertit les fiches freins au format Org-mode (`.md`) du corpus CIP en `freins.json` pour le bundle de l'application.
+
+```bash
+python3 scripts/convert_freins.py
+```
+
+Attend les fichiers `frein-*.md` dans `/Users/olie/Documents/Corpus/`. Extrait automatiquement : titre, description, signaux de repérage, freins associés, ressources terrain, notes CIP. Les champs `thematiques_api` et `publics_api` (slugs data·inclusion) sont à renseigner manuellement dans le JSON généré.
 
 ## Avancement
 
@@ -90,9 +106,14 @@ Requiert la variable d'environnement `DI_API_TOKEN` (le même token que dans le 
 - [x] **Score qualité** — indicateur 4 barres style signal réseau (rouge → orange → jaune → vert) + pourcentage en caption, affiché à côté de la date de mise à jour dans les vues détail
 - [x] **Liens cliquables** dans les vues détail — téléphone (`tel:`), email (`mailto:`), site web et liens source (`https://`) s'ouvrent dans l'application système appropriée
 - [x] **Tri par score qualité** — `filteredStructures()` et `filteredServices()` retournent les résultats triés par `score_qualite` décroissant ; les fiches sans score apparaissent en bas de liste
-
 - [x] **Services associés** — section en bas de chaque fiche structure listant les services liés, avec icône orange et navigation vers le détail du service
 - [x] **Localisation utilisateur sur la carte** — point bleu temps réel via `UserAnnotation()`, bouton de centrage `MapUserLocationButton`
+
+### Onglet Parcours — Freins à l'emploi
+- [x] **23 freins** issus du corpus CIP Marseille (fichiers `.md` Org-mode convertis via `convert_freins.py`)
+- [x] **Fiche frein** — description, signaux de repérage, freins associés, ressources terrain (nom, description, contact, site), notes CIP
+- [x] **Recherche de services data·inclusion** — bouton "Voir les services data·inclusion" dans chaque fiche, filtre par `thematiques_api` et `code_commune` (13055), résultats navigables inline
+- [x] **`SearchServiceResult`** — décodage du format `{service, distance?}` de `/api/v1/search/services`, paramètres étendus (`score_qualite_minimum`, `exclure_doublons`, `types`, `modes_accueil`, `frais`, `code_commune`)
 
 ### À venir
 
