@@ -95,18 +95,35 @@ actor NetworkService {
     }
 
     func searchServices(
-        lat: Double,
-        lon: Double,
+        lat: Double? = nil,
+        lon: Double? = nil,
+        codeCommune: String? = nil,
         thematiques: [String]? = nil,
-        publics: [String]? = nil
+        publics: [String]? = nil,
+        types: [String]? = nil,
+        modesAccueil: [String]? = nil,
+        frais: [String]? = nil,
+        scoreQualiteMinimum: Double? = 0.6,
+        exclureDoublons: Bool = true
     ) async throws -> [DIService] {
-        var queryItems = [
-            URLQueryItem(name: "lat", value: String(lat)),
-            URLQueryItem(name: "lon", value: String(lon))
-        ]
+        var queryItems: [URLQueryItem] = []
+        if let lat { queryItems.append(URLQueryItem(name: "lat", value: String(lat))) }
+        if let lon { queryItems.append(URLQueryItem(name: "lon", value: String(lon))) }
+        if let codeCommune { queryItems.append(URLQueryItem(name: "code_commune", value: codeCommune)) }
         thematiques?.forEach { queryItems.append(URLQueryItem(name: "thematiques", value: $0)) }
         publics?.forEach { queryItems.append(URLQueryItem(name: "publics", value: $0)) }
-        return try await fetchAllPages(path: "/api/v1/search/services", baseQueryItems: queryItems)
+        types?.forEach { queryItems.append(URLQueryItem(name: "types", value: $0)) }
+        modesAccueil?.forEach { queryItems.append(URLQueryItem(name: "modes_accueil", value: $0)) }
+        frais?.forEach { queryItems.append(URLQueryItem(name: "frais", value: $0)) }
+        if let score = scoreQualiteMinimum {
+            queryItems.append(URLQueryItem(name: "score_qualite_minimum", value: String(score)))
+        }
+        queryItems.append(URLQueryItem(name: "exclure_doublons", value: exclureDoublons ? "true" : "false"))
+        let results: [SearchServiceResult] = try await fetchAllPages(
+            path: "/api/v1/search/services",
+            baseQueryItems: queryItems
+        )
+        return results.map(\.service)
     }
 
     // MARK: - Referentiels (direct arrays, not paginated)
@@ -150,4 +167,9 @@ actor NetworkService {
 struct PagedResponse<T: Decodable>: Decodable {
     let items: [T]
     let total: Int
+}
+
+struct SearchServiceResult: Decodable {
+    let service: DIService
+    let distance: Double?
 }
