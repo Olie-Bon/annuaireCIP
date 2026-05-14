@@ -61,6 +61,29 @@ final class ParcoursViewModel {
         entries.contains { $0.frein.id == freinId }
     }
 
+    func contientService(freinId: String, serviceId: String) -> Bool {
+        entries.first(where: { $0.frein.id == freinId })?.services
+            .contains(where: { $0.service.id == serviceId }) ?? false
+    }
+
+    func toggleService(frein: Frein, item: (service: DIService, distance: Double?)) {
+        if let idx = entries.firstIndex(where: { $0.frein.id == frein.id }) {
+            var services = entries[idx].services
+            if let si = services.firstIndex(where: { $0.service.id == item.service.id }) {
+                services.remove(at: si)
+            } else {
+                services.append(item)
+            }
+            entries[idx] = ParcoursEntry(frein: frein, services: services)
+        } else {
+            entries.append(ParcoursEntry(frein: frein, services: [item]))
+        }
+    }
+
+    func serviceCount(freinId: String) -> Int {
+        entries.first(where: { $0.frein.id == freinId })?.services.count ?? 0
+    }
+
     func vider() {
         entries.removeAll()
     }

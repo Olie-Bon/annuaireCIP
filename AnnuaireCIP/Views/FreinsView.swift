@@ -154,7 +154,6 @@ struct FreinDetailView: View {
     @State private var isSearching = false
     @State private var searchError: String?
     @State private var showServices = false
-    @State private var showServiceSelection = false
 
     var body: some View {
         List {
@@ -216,18 +215,30 @@ struct FreinDetailView: View {
                     } else {
                         ForEach(servicesResultats, id: \.service.id) { item in
                             NavigationLink(destination: ServiceDetailView(service: item.service)) {
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(item.service.nom).font(.headline)
-                                    HStack(spacing: 8) {
-                                        if let commune = item.service.commune {
-                                            Text(commune).font(.caption).foregroundStyle(.secondary)
-                                        }
-                                        if let dist = item.distance {
-                                            Text(distanceLabel(dist))
-                                                .font(.caption)
-                                                .foregroundStyle(.tertiary)
+                                HStack(spacing: 10) {
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text(item.service.nom).font(.headline)
+                                        HStack(spacing: 8) {
+                                            if let commune = item.service.commune {
+                                                Text(commune).font(.caption).foregroundStyle(.secondary)
+                                            }
+                                            if let dist = item.distance {
+                                                Text(distanceLabel(dist))
+                                                    .font(.caption)
+                                                    .foregroundStyle(.tertiary)
+                                            }
                                         }
                                     }
+                                    Spacer()
+                                    let included = parcoursVM.contientService(freinId: frein.id, serviceId: item.service.id)
+                                    Button {
+                                        parcoursVM.toggleService(frein: frein, item: item)
+                                    } label: {
+                                        Image(systemName: included ? "minus.circle.fill" : "plus.circle.fill")
+                                            .font(.title3)
+                                            .foregroundStyle(included ? Color.red : Color.accentColor)
+                                    }
+                                    .buttonStyle(.plain)
                                 }
                             }
                         }
@@ -248,29 +259,25 @@ struct FreinDetailView: View {
 
             Section {
                 if parcoursVM.contient(freinId: frein.id) {
-                    if showServices && !servicesResultats.isEmpty {
-                        Button { showServiceSelection = true } label: {
-                            Label("Mettre à jour les services", systemImage: "arrow.clockwise.circle")
-                        }
+                    let n = parcoursVM.serviceCount(freinId: frein.id)
+                    if n > 0 {
+                        Label("\(n) service\(n > 1 ? "s" : "") inclus", systemImage: "checkmark.circle.fill")
+                            .foregroundStyle(.tint)
                     }
                     Button(role: .destructive) {
                         parcoursVM.supprimer(freinId: frein.id)
                     } label: {
                         Label("Retirer du parcours", systemImage: "minus.circle")
                     }
+                } else if showServices {
+                    Text("Appuyez sur + pour ajouter des services à ce frein.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 } else {
                     Button {
-                        if showServices && !servicesResultats.isEmpty {
-                            showServiceSelection = true
-                        } else {
-                            parcoursVM.ajouter(frein: frein, services: [])
-                        }
+                        parcoursVM.ajouter(frein: frein, services: [])
                     } label: {
-                        if showServices && !servicesResultats.isEmpty {
-                            Label("Ajouter au parcours…", systemImage: "plus.circle")
-                        } else {
-                            Label("Ajouter au parcours", systemImage: "plus.circle")
-                        }
+                        Label("Ajouter ce frein au parcours", systemImage: "plus.circle")
                     }
                 }
             } header: {
@@ -285,9 +292,6 @@ struct FreinDetailView: View {
         .onChange(of: parcoursVM.coordonnees?.latitude) {
             showServices = false
             servicesResultats = []
-        }
-        .sheet(isPresented: $showServiceSelection) {
-            ServiceSelectionSheet(frein: frein, services: servicesResultats, parcoursVM: parcoursVM)
         }
     }
 
@@ -329,83 +333,6 @@ struct FreinDetailView: View {
         metres < 1000
             ? "\(Int(metres)) m"
             : String(format: "%.1f km", metres / 1000)
-    }
-}
-
-// MARK: - Service selection sheet
-
-private struct ServiceSelectionSheet: View {
-    let frein: Frein
-    let services: [(service: DIService, distance: Double?)]
-    let parcoursVM: ParcoursViewModel
-    @Environment(\.dismiss) private var dismiss
-    @State private var selectedIDs: Set<String>
-
-    init(frein: Frein, services: [(service: DIService, distance: Double?)], parcoursVM: ParcoursViewModel) {
-        self.frein = frein
-        self.services = services
-        self.parcoursVM = parcoursVM
-        _selectedIDs = State(initialValue: Set(services.map(\.service.id)))
-    }
-
-    var body: some View {
-        NavigationStack {
-            List(services, id: \.service.id) { item in
-                Button {
-                    if selectedIDs.contains(item.service.id) {
-                        selectedIDs.remove(item.service.id)
-                    } else {
-                        selectedIDs.insert(item.service.id)
-                    }
-                } label: {
-                    HStack(spacing: 12) {
-                        Image(systemName: selectedIDs.contains(item.service.id)
-                              ? "checkmark.circle.fill" : "circle")
-                            .foregroundStyle(selectedIDs.contains(item.service.id)
-                                             ? AnyShapeStyle(.tint) : AnyShapeStyle(.secondary))
-                            .font(.title3)
-
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text(item.service.nom)
-                                .font(.body)
-                                .foregroundStyle(.primary)
-                            HStack(spacing: 6) {
-                                if let commune = item.service.commune {
-                                    Text(commune).font(.caption).foregroundStyle(.secondary)
-                                }
-                                if let dist = item.distance {
-                                    Text(dist < 1000 ? "\(Int(dist)) m" : String(format: "%.1f km", dist / 1000))
-                                        .font(.caption).foregroundStyle(.tertiary)
-                                }
-                            }
-                        }
-                    }
-                    .padding(.vertical, 2)
-                }
-                .buttonStyle(.plain)
-            }
-            .navigationTitle("Choisir les services")
-            #if os(iOS)
-            .navigationBarTitleDisplayMode(.inline)
-            #endif
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Annuler") { dismiss() }
-                }
-                ToolbarItem(placement: .primaryAction) {
-                    Button {
-                        let selected = services.filter { selectedIDs.contains($0.service.id) }
-                        parcoursVM.ajouter(frein: frein, services: selected)
-                        dismiss()
-                    } label: {
-                        Text(selectedIDs.isEmpty
-                             ? "Ajouter (sans service)"
-                             : "Ajouter (\(selectedIDs.count))")
-                            .bold()
-                    }
-                }
-            }
-        }
     }
 }
 
