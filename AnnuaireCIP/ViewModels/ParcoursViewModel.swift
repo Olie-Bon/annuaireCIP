@@ -1,6 +1,22 @@
 import CoreLocation
 import Observation
 
+// MARK: - Parcours entry
+
+struct ParcoursEntry: Identifiable {
+    let id: UUID
+    let frein: Frein
+    let services: [(service: DIService, distance: Double?)]
+
+    init(frein: Frein, services: [(service: DIService, distance: Double?)] = []) {
+        self.id = UUID()
+        self.frein = frein
+        self.services = services
+    }
+}
+
+// MARK: - ViewModel
+
 @Observable
 final class ParcoursViewModel {
     var adresse: String = ""
@@ -8,6 +24,8 @@ final class ParcoursViewModel {
     var communeGeocodee: String?
     var isGeocoding = false
     var geocodingError: String?
+
+    var entries: [ParcoursEntry] = []
 
     private let geocoder = CLGeocoder()
 
@@ -23,6 +41,27 @@ final class ParcoursViewModel {
     var iconRecherche: String {
         aCoordonnees ? "location.magnifyingglass" : "magnifyingglass"
     }
+
+    // MARK: - Entries
+
+    func ajouter(frein: Frein, services: [(service: DIService, distance: Double?)] = []) {
+        entries.removeAll { $0.frein.id == frein.id }
+        entries.append(ParcoursEntry(frein: frein, services: services))
+    }
+
+    func supprimer(freinId: String) {
+        entries.removeAll { $0.frein.id == freinId }
+    }
+
+    func contient(freinId: String) -> Bool {
+        entries.contains { $0.frein.id == freinId }
+    }
+
+    func vider() {
+        entries.removeAll()
+    }
+
+    // MARK: - Geocoding
 
     func geocoderAdresse() async {
         let input = adresse.trimmingCharacters(in: .whitespaces)

@@ -9,6 +9,7 @@ struct FreinsView: View {
     @State private var freins: [Frein] = []
     @State private var query = ""
     @State private var errorMessage: String?
+    @State private var showExport = false
 
     private var filtered: [Frein] {
         guard !query.isEmpty else { return freins }
@@ -35,7 +36,7 @@ struct FreinsView: View {
                 } else {
                     ForEach(filtered) { frein in
                         NavigationLink(destination: FreinDetailView(frein: frein, parcoursVM: parcoursVM, annuaireVM: annuaireVM)) {
-                            FreinRow(frein: frein)
+                            FreinRow(frein: frein, inParcours: parcoursVM.contient(freinId: frein.id))
                         }
                     }
                 }
@@ -43,6 +44,20 @@ struct FreinsView: View {
             .listStyle(.inset)
             .navigationTitle("Parcours")
             .searchable(text: $query, prompt: "Rechercher un frein…")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button { showExport = true } label: {
+                        Label(
+                            parcoursVM.entries.isEmpty ? "Exporter" : "Exporter (\(parcoursVM.entries.count))",
+                            systemImage: "square.and.arrow.up"
+                        )
+                    }
+                    .disabled(parcoursVM.entries.isEmpty)
+                }
+            }
+            .sheet(isPresented: $showExport) {
+                ParcoursExportSheet(vm: parcoursVM)
+            }
         }
         .onAppear {
             guard freins.isEmpty else { return }
@@ -106,15 +121,24 @@ private struct AdresseBeneficiaireCard: View {
 
 private struct FreinRow: View {
     let frein: Frein
+    var inParcours: Bool = false
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(frein.titre)
-                .font(.headline)
-            Text(frein.description)
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .lineLimit(2)
+        HStack(alignment: .top, spacing: 8) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(frein.titre)
+                    .font(.headline)
+                Text(frein.description)
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(2)
+            }
+            if inParcours {
+                Spacer()
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundStyle(.tint)
+                    .padding(.top, 2)
+            }
         }
         .padding(.vertical, 4)
     }
@@ -219,6 +243,29 @@ struct FreinDetailView: View {
                 }
             } header: {
                 Text("Services data·inclusion")
+            }
+
+            Section {
+                if parcoursVM.contient(freinId: frein.id) {
+                    Button(role: .destructive) {
+                        parcoursVM.supprimer(freinId: frein.id)
+                    } label: {
+                        Label("Retirer du parcours", systemImage: "minus.circle")
+                    }
+                } else {
+                    Button {
+                        parcoursVM.ajouter(frein: frein, services: showServices ? servicesResultats : [])
+                    } label: {
+                        if showServices && !servicesResultats.isEmpty {
+                            Label("Ajouter au parcours (\(servicesResultats.count) service\(servicesResultats.count > 1 ? "s" : ""))",
+                                  systemImage: "plus.circle")
+                        } else {
+                            Label("Ajouter au parcours", systemImage: "plus.circle")
+                        }
+                    }
+                }
+            } header: {
+                Text("Parcours")
             }
         }
         .listStyle(.inset)
