@@ -7,6 +7,7 @@ struct ParcoursExportSheet: View {
     @Environment(\.dismiss) private var dismiss
     @State private var pdfURL: URL?
     @State private var isRendering = false
+    @State private var showDownloadSuccess = false
 
     var body: some View {
         NavigationStack {
@@ -26,6 +27,13 @@ struct ParcoursExportSheet: View {
                 ToolbarItem(placement: .primaryAction) {
                     exportButton
                 }
+                if let url = pdfURL {
+                    ToolbarItem(placement: .primaryAction) {
+                        Button { saveToDownloads(url) } label: {
+                            Label("Télécharger", systemImage: "arrow.down.circle.fill")
+                        }
+                    }
+                }
                 ToolbarItem(placement: .destructiveAction) {
                     Button(role: .destructive) { vm.vider() } label: {
                         Label("Vider", systemImage: "trash")
@@ -33,7 +41,21 @@ struct ParcoursExportSheet: View {
                     .disabled(vm.entries.isEmpty)
                 }
             }
+            .alert("PDF enregistré", isPresented: $showDownloadSuccess) {
+                Button("OK") {}
+            } message: {
+                Text("Le fichier a été sauvegardé dans votre dossier Téléchargements.")
+            }
         }
+    }
+
+    private func saveToDownloads(_ source: URL) {
+        guard let downloads = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first
+        else { return }
+        let dest = downloads.appendingPathComponent(source.lastPathComponent)
+        try? FileManager.default.removeItem(at: dest)
+        try? FileManager.default.copyItem(at: source, to: dest)
+        showDownloadSuccess = true
     }
 
     @ViewBuilder
@@ -147,6 +169,7 @@ private struct ParcoursEntrySection: View {
             Text(entry.frein.description)
                 .font(.body)
                 .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
 
             if !entry.services.isEmpty {
                 VStack(alignment: .leading, spacing: 6) {
@@ -155,13 +178,8 @@ private struct ParcoursEntrySection: View {
                         .foregroundStyle(.secondary)
                         .padding(.top, 2)
 
-                    ForEach(entry.services.prefix(5), id: \.service.id) { item in
+                    ForEach(entry.services, id: \.service.id) { item in
                         ServiceExportRow(service: item.service, distance: item.distance)
-                    }
-                    if entry.services.count > 5 {
-                        Text("+ \(entry.services.count - 5) autres services")
-                            .font(.caption)
-                            .foregroundStyle(.tertiary)
                     }
                 }
             } else {
