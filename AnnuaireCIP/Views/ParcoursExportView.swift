@@ -1,4 +1,8 @@
 import SwiftUI
+#if os(macOS)
+import AppKit
+import UniformTypeIdentifiers
+#endif
 
 // MARK: - Export sheet
 
@@ -7,7 +11,6 @@ struct ParcoursExportSheet: View {
     @Environment(\.dismiss) private var dismiss
     @State private var pdfURL: URL?
     @State private var isRendering = false
-    @State private var showDownloadSuccess = false
 
     var body: some View {
         NavigationStack {
@@ -27,19 +30,22 @@ struct ParcoursExportSheet: View {
                 ToolbarItemGroup(placement: .primaryAction) {
                     if isRendering {
                         ProgressView()
-                    } else if let url = pdfURL {
-                        Button { saveToDownloads(url) } label: {
-                            Label("Télécharger", systemImage: "arrow.down.circle.fill")
-                        }
-                        ShareLink(
-                            item: url,
-                            preview: SharePreview("Parcours.pdf", image: Image(systemName: "doc.richtext"))
-                        ) {
-                            Label("Partager", systemImage: "square.and.arrow.up")
-                        }
                     } else {
-                        Button { Task { await renderPDF() } } label: {
-                            Label("Générer PDF", systemImage: "doc.badge.plus")
+                        Button {
+                            Task {
+                                if pdfURL == nil { await renderPDF() }
+                                if let url = pdfURL { openSavePanel(url) }
+                            }
+                        } label: {
+                            Label("Télécharger PDF", systemImage: "arrow.down.circle.fill")
+                        }
+                        if let url = pdfURL {
+                            ShareLink(
+                                item: url,
+                                preview: SharePreview("Parcours.pdf", image: Image(systemName: "doc.richtext"))
+                            ) {
+                                Label("Partager", systemImage: "square.and.arrow.up")
+                            }
                         }
                     }
                 }
@@ -50,24 +56,24 @@ struct ParcoursExportSheet: View {
                     .disabled(vm.entries.isEmpty)
                 }
             }
-            .alert("PDF enregistré", isPresented: $showDownloadSuccess) {
-                Button("OK") {}
-            } message: {
-                Text("Le fichier a été sauvegardé dans votre dossier Téléchargements.")
-            }
         }
         #if os(macOS)
         .frame(minWidth: 620, idealWidth: 700, minHeight: 500, idealHeight: 680)
         #endif
     }
 
-    private func saveToDownloads(_ source: URL) {
-        guard let downloads = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first
-        else { return }
-        let dest = downloads.appendingPathComponent(source.lastPathComponent)
+    private func openSavePanel(_ source: URL) {
+        #if os(macOS)
+        let panel = NSSavePanel()
+        panel.canCreateDirectories = true
+        panel.nameFieldStringValue = source.lastPathComponent
+        panel.directoryURL = FileManager.default.urls(for: .downloadsDirectory, in: .userDomainMask).first
+        panel.allowedContentTypes = [UTType.pdf]
+        panel.prompt = "Enregistrer"
+        guard panel.runModal() == .OK, let dest = panel.url else { return }
         try? FileManager.default.removeItem(at: dest)
         try? FileManager.default.copyItem(at: source, to: dest)
-        showDownloadSuccess = true
+        #endif
     }
 
     @MainActor
