@@ -45,8 +45,12 @@ final class ParcoursViewModel {
     // MARK: - Entries
 
     func ajouter(frein: Frein, services: [(service: DIService, distance: Double?)] = []) {
-        entries.removeAll { $0.frein.id == frein.id }
-        entries.append(ParcoursEntry(frein: frein, services: services))
+        let entry = ParcoursEntry(frein: frein, services: services)
+        if let idx = entries.firstIndex(where: { $0.frein.id == frein.id }) {
+            entries[idx] = entry
+        } else {
+            entries.append(entry)
+        }
     }
 
     func supprimer(freinId: String) {
