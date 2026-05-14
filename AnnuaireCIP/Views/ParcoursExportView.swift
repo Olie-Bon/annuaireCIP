@@ -47,6 +47,9 @@ struct ParcoursExportSheet: View {
                 Text("Le fichier a été sauvegardé dans votre dossier Téléchargements.")
             }
         }
+        #if os(macOS)
+        .frame(minWidth: 620, idealWidth: 700, minHeight: 500, idealHeight: 680)
+        #endif
     }
 
     private func saveToDownloads(_ source: URL) {
