@@ -1,0 +1,1736 @@
+[
+  {
+    "id": "frein-acces-droits",
+    "titre": "Non-accès aux droits",
+    "description": "Situation dans laquelle une personne ne bénéficie pas de droits auxquels elle est éligible, faute de connaissance, de capacité à effectuer les démarches ou de peur de l'administration. Le non-recours aux droits est massif en France (notamment sur le RSA, la CMU-C, l'APL) et représente un frein concret à la stabilisation de la situation de la personne, préalable à toute insertion.",
+    "signaux_reperage": [
+      "Droits ouverts non perçus (RSA, CMU-C, APL, AAH, AEEH...)",
+      "Dossiers en souffrance ou incomplets depuis longtemps",
+      "Peur ou défiance vis-à-vis de l'administration (\"Si je demande, on va me poser des questions\")",
+      "Documents manquants bloquant l'ouverture des droits (titre de séjour, acte de naissance étranger...)",
+      "Personnes qui ne savent pas à quels droits elles ont accès"
+    ],
+    "thematiques_api": [
+      "difficultes-administratives-ou-juridiques"
+    ],
+    "publics_api": [
+      "beneficiaires-des-minimas-sociaux",
+      "personnes-exilees",
+      "seniors"
+    ],
+    "freins_associes": [
+      "frein-autonomie",
+      "frein-langue",
+      "frein-numerique",
+      "frein-budget"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "6d9078ea-1a6d-434b-b41f-90434f2abb72",
+        "nom": "PROTIS : accueil RSA, accompagnement accès aux droits",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "defa9d31-a7cb-41db-9464-a9ca10c48a0c",
+        "nom": "Points d'accès au droit Marseille (PAD) : consultations juridiques gratuites",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "916ec385-35fa-4b99-b0c0-8157907b0d2d",
+        "nom": "CIAS / CCAS arrondissements : aide aux démarches sociales",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "e27b6596-b984-449b-8d30-92d6cebc4970",
+        "nom": "Permanences associatives : Le Cana (Point d'Appui Étranger), JEDAI, centres sociaux",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "c851c37e-ab00-48c4-a3f4-287cfd1763cf",
+        "nom": "CAF, CPAM, France Travail : rendez-vous dédiés aux situations complexes",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "c11ff4fd-4504-4d85-a580-e6ece3391dde",
+        "nom": "Si titre de séjour précaire ou absent : voir frein situation administrative → CIMADE, Forum Réfugiés",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Faire un bilan des droits systématique en premier entretien : CMU-C, APL, RSA (et compléments), allocations familiales, AAH si applicable\n• Le non-recours aux droits est souvent lié à la peur ou à l'ignorance, jamais à l'indifférence — aborder sans jugement\n• Coordonner avec le référent social qui a souvent une meilleure visibilité sur les droits sociaux"
+  },
+  {
+    "id": "frein-addiction",
+    "titre": "Addiction (alcool, drogues, jeux)",
+    "description": "Dépendance à une substance (alcool, cannabis, opiacés, cocaïne, médicaments détournés) ou à un comportement (jeux d'argent, jeux vidéo) qui désorganise la vie quotidienne, compromet la régularité et la fiabilité nécessaires à l'emploi, et absorbe les ressources financières et psychiques de la personne. Frein souvent dissimulé — par honte, par peur des conséquences, ou par déni. Le CIP n'est ni médecin ni addictologue, mais doit savoir le repérer, ne pas le nier, et orienter vers les ressources adaptées sans rompre l'alliance. Trois niveaux à distinguer : - **Usage problématique** : consommation régulière qui commence à impacter le fonctionnement - **Dépendance** : perte de contrôle, consommation compulsive malgré les conséquences - **Addiction en traitement** : personne sous suivi CSAPA ou traitement de substitution — situation stabilisée possible",
+    "signaux_reperage": [
+      "Absences ou retards répétés aux rendez-vous sans explication claire",
+      "Odeur d'alcool détectée en entretien",
+      "Comportement inhabituellement agité ou au contraire très ralenti",
+      "Dettes importantes ou demandes d'avances répétées (jeux)",
+      "Pertes d'emploi répétées sans raison professionnelle claire",
+      "Minimisation ou déni systématique quand le sujet est abordé",
+      "Entourage (famille, travailleur social) qui signale une consommation problématique",
+      "Mentions de \"problèmes de santé\" vagues qui correspondent en réalité à des consommations"
+    ],
+    "thematiques_api": [
+      "sante"
+    ],
+    "publics_api": [
+      "tous-publics"
+    ],
+    "freins_associes": [
+      "frein-sante",
+      "frein-budget",
+      "frein-isolement",
+      "frein-logement",
+      "frein-confiance"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "66e94006-ef13-4405-a85d-c3f004f78f41",
+        "nom": "CSAPA",
+        "description": "(Centre de Soins, d'Accompagnement et de Prévention en Addictologie) — suivi médical et psychologique de l'addiction",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "8928cc68-ae88-4861-9e31-c1f97190a367",
+        "nom": "CSAPA Marseille : plusieurs structures sur le territoire (Groupe SOS, Croix-Rouge, AP-HM)",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "fd0e33eb-9226-4a1a-9ac3-0c534905aa45",
+        "nom": "Accès libre ou sur orientation médicale",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "06ad100e-ab1e-4c0c-885c-7b94616c5bf0",
+        "nom": "CAARUD",
+        "description": "(Centre d'Accueil et d'Accompagnement à la Réduction des risques pour Usagers de Drogues) — pour les usagers actifs non encore en demande de soins",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "4d562778-e088-4de4-9e2f-9f7e1955c0cb",
+        "nom": "Alcooliques Anonymes / Narcotiques Anonymes",
+        "description": "groupes de parole et soutien par les pairs",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "b7c3aa48-5b62-4083-a11e-b8e842b805f5",
+        "nom": "Jeux : SOS Joueurs",
+        "description": "09 74 75 13 13 (numéro national gratuit)",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "ac304ad8-56d3-45a9-a470-b8b228629651",
+        "nom": "DAPE avec psychologue du travail pour les situations où l'addiction est stabilisée et l'insertion peut reprendre",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "bd1c0afa-77a8-481b-bb68-224b0c01b0b6",
+        "nom": "CHRS si la situation de logement est également compromise",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• L'addiction est un sujet à aborder avec tact mais sans l'éviter — ne pas faire semblant de ne pas voir quand les signaux sont là\n• La posture juste : nommer ce qu'on observe (comportement, absences) sans accuser ni diagnostiquer — \"J'ai l'impression que vous traversez quelque chose de difficile en ce moment\"\n• Ne jamais conditionner l'accompagnement à l'arrêt de la consommation — la personne doit rester dans le dispositif même en consommant, tant que la sécurité est assurée\n• Une addiction en traitement (méthadone, Subutex) n'est pas un obstacle absolu à l'emploi — de nombreux postes sont accessibles, vérifier les contraintes réelles\n• Coordonner avec le CSAPA si la personne est déjà suivie — ne pas travailler en parallèle sans communication\n• Certains employeurs de l'IAE sont habitués à ce public et disposent d'encadrants formés — à privilégier pour les premiers retours en emploi"
+  },
+  {
+    "id": "frein-autonomie",
+    "titre": "Manque d'autonomie dans les démarches administratives",
+    "description": "Incapacité ou grande difficulté à gérer seul les démarches administratives courantes liées à l'insertion : ouverture et suivi des droits (CAF, France Travail, CPAM), gestion du courrier administratif, utilisation des espaces en ligne, compréhension et constitution de dossiers. Peut découler d'une barrière linguistique, d'un manque de compétences de base, ou d'une dépendance à un tiers qui gère à la place.",
+    "signaux_reperage": [
+      "Droits non ouverts ou perdus faute de démarches (RSA suspendu, ARE non perçue)",
+      "Documents administratifs non lus, apportés en vrac, incompris",
+      "Demande systématique d'aide pour des démarches supposément autonomes",
+      "Dépendance à un tiers (conjoint, enfant, voisin) qui gère tout à la place",
+      "Incapacité à utiliser seul l'espace personnel France Travail ou CAF"
+    ],
+    "thematiques_api": [
+      "difficultes-administratives-ou-juridiques",
+      "numerique"
+    ],
+    "publics_api": [
+      "personnes-exilees",
+      "actifs"
+    ],
+    "freins_associes": [
+      "frein-langue",
+      "frein-isolement",
+      "frein-numerique"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "8c9c3b26-b228-4e06-a524-3e28b3ad1098",
+        "nom": "Espace Numérique PROTIS : accompagnement aux démarches dématérialisées",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "3d23b06c-d528-4f03-a9e8-5e3491df3b6e",
+        "nom": "Conseillers Numériques France Service : accompagnement individuel gratuit",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "deb81252-a234-4041-939a-367bf8f49d6b",
+        "nom": "Aidants Connect : pour les situations de dépendance numérique légale",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "679e6da1-1f1b-4ee7-bdc8-d10e8ff7820d",
+        "nom": "France Services Marseille : guichet unique démarches administratives",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "d44f79d4-3422-458e-a764-bdc1f085d056",
+        "nom": "Ateliers accès aux droits (JEDAI, CIERES-ALIS)",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• L'autonomie administrative se travaille en faisant avec, pas à la place — guider sans substituer\n• Identifier si la dépendance est subie (ne sait pas faire) ou choisie (quelqu'un fait à la place depuis toujours) — la posture d'accompagnement diffère\n• Les droits non ouverts sont une urgence : vérifier systématiquement en premier entretien l'état des droits CAF, France Travail, CPAM"
+  },
+  {
+    "id": "frein-budget",
+    "titre": "Difficultés budgétaires",
+    "description": "Insuffisance de ressources financières qui crée des obstacles concrets à l'insertion : impossibilité de financer les transports, la garde d'enfants, une formation, les vêtements professionnels, ou de tenir financièrement pendant la période entre la reprise d'emploi et le premier salaire. Peut aussi prendre la forme d'un surendettement qui absorbe toute l'énergie de la personne.",
+    "signaux_reperage": [
+      "\"Je n'ai pas les moyens de payer le bus tous les jours\"",
+      "Impossibilité d'avancer les frais de formation ou de permis",
+      "Surendettement actif (procédure Banque de France en cours)",
+      "Période de carence entre fin du RSA et premier salaire non financée",
+      "Refus d'une offre à temps partiel car le salaire ne couvre pas les charges",
+      "Trésorerie zéro au moment de reprendre un emploi (frais d'équipement)"
+    ],
+    "thematiques_api": [
+      "difficultes-financieres"
+    ],
+    "publics_api": [
+      "beneficiaires-des-minimas-sociaux",
+      "familles"
+    ],
+    "freins_associes": [
+      "frein-mobilite",
+      "frein-modes-de-garde",
+      "frein-logement",
+      "frein-multi-freins",
+      "frein-sante"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "6d439fd7-e3fd-4a3f-8781-8ac5d255acee",
+        "nom": "Prime de retour à l'emploi (ex-prime d'activité RSA) : à vérifier selon situation",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "efb5c7ef-ca7d-43c8-a1f1-8272eb9f7763",
+        "nom": "Aides FSE / Département pour frais d'insertion (transport, garde, équipement)",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "3ad445af-f80a-4a30-a1b3-ab8120b86f2d",
+        "nom": "Microcrédit personnel (Crédit Municipal, ADIE) pour les projets de création ou formation",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "dd07c5c3-03f7-4d10-82dc-3960adb73d6b",
+        "nom": "Banque de France : procédure de surendettement si nécessaire",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "ccebdfb1-22bf-4353-8183-521cb4627573",
+        "nom": "Épiceries sociales, vestiboutiques pour l'équipement professionnel",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Les difficultés budgétaires sont souvent sous-déclarées par pudeur — poser la question directement et sans jugement en début de suivi\n• Anticiper le \"reste pour vivre\" au moment de la reprise d'emploi : la période entre fin du RSA et premier salaire est un moment de fragilité maximale\n• Certaines aides (prime d'activité, chèques transport) nécessitent d'être activées en amont — ne pas attendre la reprise d'emploi pour s'en occuper"
+  },
+  {
+    "id": "frein-confiance",
+    "titre": "Manque de confiance en soi / Estime de soi",
+    "description": "Difficulté à se percevoir comme capable d'agir efficacement dans une situation professionnelle ou sociale. Se traduit par une image de soi dégradée, une sous-estimation des compétences réelles et une anticipation systématique de l'échec. Distinct de la timidité (trait de caractère) : ici, la confiance a été abîmée par des expériences répétées d'échec, de rejet ou de dévalorisation.",
+    "signaux_reperage": [
+      "\"Je ne sais rien faire\", \"Je n'ai aucune expérience\", \"Personne ne voudra de moi\"",
+      "Incapacité à citer ses propres compétences sans aide, même après reformulation",
+      "Regard fuyant, voix inaudible, posture repliée",
+      "Refus ou blocage face aux exercices de bilan (CV, inventaire de compétences)",
+      "Mutisme, refus de prendre la parole devant le groupe",
+      "Dépendance excessive à la validation du conseiller",
+      "Réaction disproportionnée à la moindre critique ou retour"
+    ],
+    "thematiques_api": [
+      "remobilisation"
+    ],
+    "publics_api": [
+      "beneficiaires-des-minimas-sociaux",
+      "seniors",
+      "femmes",
+      "residents-qpv-frr"
+    ],
+    "freins_associes": [
+      "frein-isolement",
+      "frein-eloignement-emploi",
+      "frein-sante",
+      "frein-projet-pro"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "e448e446-cd64-40b5-82e1-70b741939321",
+        "nom": "Frein léger : travail en entretien CIP, techniques de valorisation des compétences, portefeuille de compétences",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "e63e9ebf-de55-4db9-8fde-c86acada96d8",
+        "nom": "Frein modéré : SAS Diagnostic Projet — espace de parole sécurisé, bilan positif",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "e2784f73-7c67-43cb-8955-9a03362f815c",
+        "nom": "Frein sévère : DAPE avec psychologue du travail (CIERES, PROTIS-AGT)",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "e8e0b225-f4d5-4fb0-be74-1791cfc85a0e",
+        "nom": "Seniors QPV : AU.ASIS — remobilisation collective adaptée",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Ne jamais confronter directement une personne sur ses propos dépréciatifs — risque de renforcement\n• Technique utile : \"Racontez-moi une journée où vous avez bien géré quelque chose\" → partir du concret vécu\n• Distinguer manque de confiance situationnel (ex: après licenciement) et manque de confiance structurel (ancienneté, histoire de vie) — l'intensité de l'accompagnement diffère\n• Si blocage total persistant après 2--3 entretiens : orienter vers bilan psychologique avant de poursuivre le travail emploi"
+  },
+  {
+    "id": "frein-desengagement",
+    "titre": "Rupture de parcours / Désengagement du dispositif RSA",
+    "description": "Situation dans laquelle une personne s'est progressivement ou brutalement désolidarisée du dispositif d'insertion, que ce soit par découragement, sentiment d'inutilité, incompréhension des obligations, ou réaction à une sanction. Se manifeste concrètement par le non-respect du CER et souvent par la suspension de l'allocation RSA. Ce n'est pas un manque de volonté mais souvent la résultante d'autres freins non traités ou d'expériences négatives accumulées.",
+    "signaux_reperage": [
+      "Absence aux rendez-vous sans prévenir ni s'excuser",
+      "CER non respecté (actions non réalisées, formations non suivies)",
+      "Suspension de l'allocation RSA (signalement du Pôle d'Insertion)",
+      "Discours négatif sur le dispositif : \"Vous ne servez à rien\", \"C'est toujours pareil\"",
+      "Résignation : \"De toute façon ça ne changera pas\"",
+      "Longue ancienneté RSA sans progression notable"
+    ],
+    "thematiques_api": [
+      "remobilisation"
+    ],
+    "publics_api": [
+      "beneficiaires-des-minimas-sociaux"
+    ],
+    "freins_associes": [
+      "frein-confiance",
+      "frein-sante",
+      "frein-logement",
+      "frein-isolement"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "c433c380-5b6d-4c42-862e-d1c58befb875",
+        "nom": "Dispositif dédié : MORSE (CIERES) — uniquement sur prescription du Pôle d'Insertion, après suspension RSA",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "9a2acf91-13e2-4042-8659-78431cf9ca68",
+        "nom": "Avant suspension : entretien motivationnel, révision du CER, adaptation des objectifs",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "201fb6c7-e8ec-4076-8a34-2bd2c53aa3d6",
+        "nom": "Approche de médiation si conflit avec le dispositif",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Le désengagement est presque toujours un signal d'alarme sur d'autres freins non traités — investiguer avant de sanctionner\n• La suspension RSA est un outil de dernier recours, pas un outil éducatif — l'utiliser fragilise encore plus les personnes déjà en difficulté\n• Avec les personnes désengagées : travailler d'abord le lien de confiance avant les objectifs d'insertion — sans lien, aucune action n'est possible\n• MORSE n'est pas une sanction mais une main tendue : bien l'expliquer lors de l'orientation"
+  },
+  {
+    "id": "frein-eloignement-emploi",
+    "titre": "Éloignement durable du marché du travail",
+    "description": "Situation d'une personne dont l'absence prolongée du monde du travail (généralement \\>12 mois, DETLD \\>24 mois) a entraîné une perte des repères professionnels, une obsolescence partielle des compétences et un décalage progressif avec les codes et exigences du marché du travail actuel. Le temps devient lui-même un frein cumulatif.",
+    "signaux_reperage": [
+      "Dernière expérience \\>2 ans, parfois \\>5 ou 10 ans",
+      "Méconnaissance des outils numériques devenus standards (logiciels métier, candidature en ligne)",
+      "Discours défaitiste sur l'employabilité : \"À mon âge/avec mon parcours, personne ne voudra de moi\"",
+      "Peur panique de la reprise : \"Je ne sais plus comment me comporter en entreprise\"",
+      "CV avec trous non expliqués, refus ou incapacité à valoriser les activités hors emploi"
+    ],
+    "thematiques_api": [
+      "remobilisation",
+      "trouver-un-emploi"
+    ],
+    "publics_api": [
+      "demandeurs-emploi",
+      "beneficiaires-des-minimas-sociaux",
+      "seniors"
+    ],
+    "freins_associes": [
+      "frein-confiance",
+      "frein-qualification",
+      "frein-numerique",
+      "frein-sante"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "ef23024f-e935-4b2f-99b4-1fca51afef90",
+        "nom": "Remobilisation et diagnostic : SAS Diagnostic Projet, AU.ASIS",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "be2330f2-a494-4f96-ad9f-5c17e66813ad",
+        "nom": "Accompagnement long renforcé : PLIE (jusqu'à 2 ans), DAPE",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "7e0ba7fe-82b9-4038-8483-0c1c62a50fc4",
+        "nom": "Immersions professionnelles courtes (PMSMP) — outil clé pour recréer un lien doux avec l'entreprise",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "a3d15b67-c1c1-4a9b-a7d9-45e316126f91",
+        "nom": "Bénévolat / activités associatives valorisables en attendant — à suggérer si pas d'emploi immédiat",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Ne pas sur-focaliser sur le trou du CV — travailler d'abord ce qui s'est passé pendant cette période : compétences informelles, vie associative, aidant familial...\n• La PMSMP (Période de Mise en Situation en Milieu Professionnel) est souvent le meilleur outil de réassurance — \"tester\" avant de s'engager réduit la peur\n• Attention au cercle vicieux : éloignement → perte confiance → moins de candidatures → plus d'éloignement → orienter vite vers une remise en dynamique même légère"
+  },
+  {
+    "id": "frein-hors-radar",
+    "titre": "Invisibilité institutionnelle (hors de tout radar)",
+    "description": "Situation d'une personne totalement absente des fichiers et du radar des institutions d'insertion — non inscrite à France Travail, non connue du Pôle d'Insertion, non suivie par aucun travailleur social. Ces personnes n'accèdent pas aux dispositifs car elles ne savent pas qu'ils existent, n'ont pas confiance ou ne peuvent pas physiquement s'y rendre. Elles ne viennent pas vers les structures : il faut aller vers elles.",
+    "signaux_reperage": [
+      "Signalement par un tiers (voisin, association de quartier, centre social)",
+      "Aucune inscription France Travail active",
+      "Absence totale de parcours d'insertion documenté",
+      "Personne n'ayant jamais sollicité d'aide institutionnelle de sa propre initiative",
+      "Résidence en QPV, souvent +45 ans ou jeune déscolarisé depuis longtemps"
+    ],
+    "thematiques_api": [
+      "remobilisation"
+    ],
+    "publics_api": [
+      "demandeurs-emploi",
+      "residents-qpv-frr",
+      "seniors"
+    ],
+    "freins_associes": [
+      "frein-isolement",
+      "frein-eloignement-emploi",
+      "frein-sante",
+      "frein-logement"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "000374a2-cebc-442b-b47d-bdbd8a333519",
+        "nom": "Aller-vers : MOVE (CIERES) pour les 14e--15e arrondissements",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "fba877a4-39ae-42c9-89af-2bab69508bd0",
+        "nom": "Remobilisation seniors QPV : AU.ASIS (PROTIS) — spécialement conçu pour ce public",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "0952b529-6311-4351-975d-2e9515a9b618",
+        "nom": "Centres sociaux : relais de proximité pour le premier contact",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "b3ccb826-155a-4751-a534-5399e99d0a2e",
+        "nom": "Maraudes associatives : pour les situations de grande précarité",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Par définition, ces personnes ne viennent pas en rendez-vous — le travail commence hors les murs\n• La première rencontre doit être à très faible exigence : écouter, informer, créer un lien — pas fixer des objectifs d'insertion\n• Ne pas sur-solliciter au premier contact — un lien de confiance se construit lentement avec ce public\n• MOVE et AU.ASIS sont les outils spécifiquement conçus pour ce travail d'aller-vers à Marseille"
+  },
+  {
+    "id": "frein-integration",
+    "titre": "Difficultés d'intégration culturelle et sociale",
+    "description": "Difficultés à décoder et s'approprier les codes culturels, sociaux et professionnels du contexte français, au-delà de la seule barrière linguistique. Concerne les normes implicites du monde du travail (ponctualité, hiérarchie, mixité, codes vestimentaires), les droits et devoirs du salarié, et plus largement les règles de vie sociale en France. Frein souvent invisible car la personne ne mesure pas elle-même l'écart.",
+    "signaux_reperage": [
+      "Incompréhension ou refus des codes hiérarchiques ou de genre dans le travail",
+      "Méconnaissance des droits du salarié (congés, maladie, contrats)",
+      "Réseau social exclusivement communautaire — absence d'interaction avec la culture française",
+      "Difficultés à comprendre pourquoi une candidature échoue malgré les compétences",
+      "Choc culturel non verbalisé — comportements inadaptés en entretien sans en avoir conscience"
+    ],
+    "thematiques_api": [
+      "lecture-ecriture-calcul",
+      "souvrir-a-linternational"
+    ],
+    "publics_api": [
+      "personnes-exilees"
+    ],
+    "freins_associes": [
+      "frein-langue",
+      "frein-isolement",
+      "frein-confiance"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "00543dde-d727-4e3f-b0ee-8c6de7f366b0",
+        "nom": "FLI (Français Langue d'Intégration) — volet culturel et civique inclus : voir fiche FLE",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "078279e4-0a0d-4b4a-b27c-bdda29f9aa5e",
+        "nom": "Ateliers sociolinguistiques (EPFF, Via Formation) : culture, mobilité, autonomie, français professionnel",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "f3a4355a-e852-414f-9389-44e278d70504",
+        "nom": "Contrat d'Intégration Républicaine (OFII) : formation civique obligatoire pour les primo-arrivants",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Aborder ce frein avec beaucoup de tact — ne pas en faire une critique culturelle mais une aide à la compréhension des codes locaux\n• Le FLI est plus adapté que le FLE classique pour ce frein — il intègre la dimension civique et culturelle\n• Valoriser les compétences interculturelles comme atout : multilinguisme, expérience internationale, adaptabilité"
+  },
+  {
+    "id": "frein-isolement",
+    "titre": "Isolement social",
+    "description": "Absence ou insuffisance de liens sociaux fonctionnels — famille, amis, voisinage, réseaux professionnels. L'isolement social fragilise la santé mentale, réduit l'accès à l'information et prive la personne des ressources informelles essentielles à la recherche d'emploi (réseau, cooptation, soutien moral). Il précède et amplifie presque tous les autres freins.",
+    "signaux_reperage": [
+      "\"Je n'ai personne à qui parler\", \"Je reste chez moi toute la journée\"",
+      "Absence totale de réseau personnel ou professionnel mobilisable",
+      "Rendez-vous non honorés sans explication — la démarche d'insertion est parfois le seul lien social restant, paradoxalement difficile à maintenir",
+      "Hyperinvestissement dans la relation avec le conseiller (seul lien existant)",
+      "Chez les seniors : perte du lien professionnel après arrêt de travail sans réseau de substitution"
+    ],
+    "thematiques_api": [
+      "remobilisation",
+      "famille"
+    ],
+    "publics_api": [
+      "seniors",
+      "familles",
+      "personnes-exilees",
+      "beneficiaires-des-minimas-sociaux"
+    ],
+    "freins_associes": [
+      "frein-confiance",
+      "frein-eloignement-emploi",
+      "frein-sante",
+      "frein-mobilite"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "559625ae-e8fb-45ba-b6e2-0a1ad3f32a39",
+        "nom": "Aller-vers : MOVE pour les publics hors radar dans les quartiers nord",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "4845ecf1-ac7a-4d02-adfa-bbee3ab65616",
+        "nom": "Remobilisation collective : AU.ASIS pour les seniors QPV",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "9b3b9465-37da-4fba-829e-7bb920cdd0e1",
+        "nom": "Espaces collectifs : ateliers collectifs du DAPE, ateliers MORSE",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "0a2d604c-95ee-4c42-ae8f-18ff2f8846e3",
+        "nom": "Médiation sociale et lien de quartier : centres sociaux partenaires de MOVE (Bassens, Sainte-Marthe...)",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• L'isolement se repère souvent indirectement — la personne n'en parle pas spontanément car elle en a honte\n• Le rendez-vous CIP peut être le seul lien social de la semaine : en avoir conscience évite de sur-interpréter l'hyperattachement\n• Ne pas confondre isolement choisi (besoin de retrait) et isolement subi (absence de liens désirée mais absente)\n• Orienter vers des actions collectives avant les actions individuelles intensives — recréer du lien d'abord"
+  },
+  {
+    "id": "frein-langue",
+    "titre": "Barrière linguistique",
+    "description": "Maîtrise insuffisante du français oral et/ou écrit pour accéder à un emploi, suivre une formation ou réaliser les démarches administratives liées à l'insertion. Frein transversal qui conditionne l'accès à tous les autres dispositifs. Peut prendre plusieurs formes : analphabétisme dans la langue d'origine, illettrisme (scolarisé en France mais sans maîtrise suffisante), FLE (français langue étrangère).",
+    "signaux_reperage": [
+      "Communication en français difficile ou nécessitant un interprète",
+      "Incapacité à lire ou remplir un formulaire en autonomie",
+      "Fort décalage entre niveau oral et écrit (fréquent chez les personnes scolarisées à l'étranger)",
+      "Documents administratifs non compris (convocations, courriers CAF, France Travail)",
+      "Signature sans lecture du document"
+    ],
+    "thematiques_api": [
+      "lecture-ecriture-calcul"
+    ],
+    "publics_api": [
+      "personnes-exilees"
+    ],
+    "freins_associes": [
+      "frein-integration",
+      "frein-autonomie",
+      "frein-numerique",
+      "frein-isolement"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "8055c16f-dfc7-4a63-8058-ad3f3d51fb0b",
+        "nom": "Point d'entrée BRSA : Plateforme Linguistique Le Cana (prescription référent) — diagnostic et orientation vers l'opérateur adapté",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "04d65cea-6cb5-406d-823e-a77b812e1682",
+        "nom": "Tous publics : PASEO (CRIA PACA) — évaluation et orientation",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "79341ac5-0c0d-4159-a46d-7f6f21daf0de",
+        "nom": "Opérateurs FLE : voir fiche FLE (CIERES, EPFF, Espaces Formation, Le Cana, GRETA, Via Formation, Sud Formation)",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "1462ca54-a26c-4df4-874b-83a8b36b9ca9",
+        "nom": "Signataires CIR : OFII — formation obligatoire et financée",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "fd2234e5-3686-436a-b402-2a293b41fd8b",
+        "nom": "Niveau cible insertion : A2 minimum pour accéder aux dispositifs emploi",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Toujours passer par la Plateforme Linguistique Cana pour les BRSA allophones — le diagnostic linguistique est plus précis qu'une estimation en entretien\n• Distinguer FLE (langue étrangère), FLI (intégration), illettrisme (francophone sans maîtrise écrite) — la réponse est différente\n• Le niveau A2 est souvent le seuil minimal pour accéder aux dispositifs d'insertion — en dessous, prioriser la formation linguistique avant tout\n• Certains métiers sont accessibles avec un faible niveau de français écrit (manutention, nettoyage, restauration) — ne pas bloquer systématiquement l'accès à l'emploi en attendant le niveau B1"
+  },
+  {
+    "id": "frein-logement",
+    "titre": "Instabilité ou absence de logement",
+    "description": "Situation résidentielle instable ou précaire qui mobilise l'énergie de la personne au détriment de toute démarche d'insertion, et qui crée des obstacles pratiques concrets : pas d'adresse pour un contrat de travail, pas d'espace calme pour préparer des entretiens, épuisement lié à l'insécurité résidentielle. Frein périphérique prioritaire : tant qu'il n'est pas stabilisé, l'insertion professionnelle est rarement possible.",
+    "signaux_reperage": [
+      "Domiciliation CCAS ou association (pas d'adresse personnelle stable)",
+      "Hébergement chez un tiers avec incertitude sur la durée",
+      "Hôtel social ou foyer d'hébergement d'urgence",
+      "Logement insalubre ou suroccupé",
+      "Procédure d'expulsion en cours",
+      "Fatigue et préoccupation dominante liée au logement lors des entretiens"
+    ],
+    "thematiques_api": [
+      "logement-hebergement"
+    ],
+    "publics_api": [
+      "personnes-en-situation-durgence",
+      "beneficiaires-des-minimas-sociaux"
+    ],
+    "freins_associes": [
+      "frein-sante",
+      "frein-confiance",
+      "frein-isolement",
+      "frein-budget",
+      "frein-projet-pro"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "49f5e631-4495-4089-9b73-c760690b2ee3",
+        "nom": "Coordination avec le référent social en priorité — le logement est hors champ CIP direct",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "b2f0987e-5d24-4273-aa52-83ebab588ef3",
+        "nom": "JEDAI : services supports logement pour les jeunes en parcours",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "86364ae6-8ab4-4c5c-8837-011562778e47",
+        "nom": "CHRS Marseille : hébergement + accompagnement global — orientation via SIAO 13 (115)",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "5543184d-8a04-42e5-a722-9e6ef8e07015",
+        "nom": "SIAO 13 (Service Intégré d'Accueil et d'Orientation) : 115, hébergement d'urgence",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "ce1d0ff9-4b7b-412e-a3e1-0ee968b65b7f",
+        "nom": "ADIL 13 (Agence Départementale d'Information sur le Logement)",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "ae8ef3c5-ae6e-4167-bb1f-ff55da70049e",
+        "nom": "FSL (Fonds de Solidarité pour le Logement) via le Département",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "a418ac88-b8a2-4c53-b5b1-e61f48c061d1",
+        "nom": "Action Logement : aide à l'accès au logement pour les salariés",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Le logement est un préalable à l'insertion : ne pas forcer l'avancée sur l'emploi tant que la situation résidentielle n'est pas a minima stabilisée\n• Le CIP n'est pas travailleur social — orienter vers le bon interlocuteur et coordonner, ne pas prendre en charge seul\n• La domiciliation est un droit : orienter vers le CCAS si la personne n'a pas d'adresse stable — sans adresse, impossible d'avoir un contrat de travail\n• Certains employeurs acceptent la domiciliation associative — à vérifier au cas par cas"
+  },
+  {
+    "id": "frein-mobilite",
+    "titre": "Difficultés de mobilité",
+    "description": "Impossibilité ou grande difficulté à se déplacer de manière autonome et régulière pour accéder à un emploi, une formation ou un dispositif d'accompagnement. Sur Marseille, frein particulièrement prégnant dans les quartiers nord et les zones peu couvertes par les transports en commun. Peut être matériel (pas de véhicule, coût), cognitif (difficulté à lire les plans, gérer les correspondances) ou psychologique (anxiété des transports).",
+    "signaux_reperage": [
+      "Refus ou impossibilité d'accepter des offres dans certaines zones géographiques",
+      "Retards ou absences répétés liés aux transports",
+      "\"Je ne peux pas, c'est trop loin\" sans solution alternative envisagée",
+      "Pas de permis de conduire et zone non couverte par les transports en commun",
+      "Dépendance à un tiers pour les déplacements (conjoint, parent)",
+      "Coût des transports mentionné comme obstacle financier"
+    ],
+    "thematiques_api": [
+      "mobilite"
+    ],
+    "publics_api": [
+      "residents-qpv-frr",
+      "seniors"
+    ],
+    "freins_associes": [
+      "frein-isolement",
+      "frein-budget",
+      "frein-eloignement-emploi"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "2023a74d-676e-40db-a298-00754630f546",
+        "nom": "Référence : WIMOOV — diagnostic mobilité, accompagnement permis, solutions alternatives",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "6209107f-32aa-4d24-b5dd-5cedf47d5e82",
+        "nom": "Aides financières : Permis mobilité (Action Logement), aides AGEFIPH (TH), aides France Travail",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "ec8ef68b-4e85-4e68-bf28-4aa7c2917613",
+        "nom": "Transports alternatifs : covoiturage solidaire, vélo à assistance électrique, services de transport adapté",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "d285b57c-1c40-4177-bda3-ffc37350d80d",
+        "nom": "Autoécoles sociales sur Marseille : tarifs adaptés, pédagogie renforcée",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Prescrire systématiquement un diagnostic Wimoov pour tout bénéficiaire des quartiers nord (14e--16e) ou exprimant des difficultés de déplacement — avant même de chercher des offres d'emploi\n• Le permis de conduire change radicalement le rayon d'employabilité — investissement qui vaut souvent la peine d'être accompagné\n• Ne pas sous-estimer la dimension cognitive : certaines personnes ont des difficultés à lire les plans ou gérer les correspondances — Wimoov peut accompagner cet aspect\n• Sur Marseille, la géographie est un facteur objectif : ne pas culpabiliser la personne sur un frein en partie structurel"
+  },
+  {
+    "id": "frein-modes-de-garde",
+    "titre": "Absence de mode de garde adapté",
+    "description": "Impossibilité de reprendre une activité professionnelle ou une formation faute de solution de garde fiable, adaptée aux horaires de travail et financièrement accessible. Frein périphérique concret qui touche prioritairement les femmes et les parents isolés. Souvent sous-estimé car considéré comme relevant de la vie privée alors qu'il est un obstacle objectif à l'insertion.",
+    "signaux_reperage": [
+      "Refus systématique d'offres impliquant des horaires décalés (tôt le matin, tard le soir, week-end)",
+      "Impossibilité de s'inscrire à une formation à temps plein faute de garde",
+      "Enfant(s) de moins de 3 ans sans solution de crèche ou assistante maternelle",
+      "Enfant en situation de handicap nécessitant une garde spécialisée",
+      "Réseau familial absent ou insuffisant pour pallier",
+      "Coût de la garde mentionné comme prohibitif"
+    ],
+    "thematiques_api": [
+      "famille"
+    ],
+    "publics_api": [
+      "familles",
+      "personnes-en-situation-de-handicap"
+    ],
+    "freins_associes": [
+      "frein-projet-pro",
+      "frein-budget",
+      "frein-isolement"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "2a2a0937-91ea-431c-b2fc-4bed3d77fddb",
+        "nom": "Référence sur Marseille : Plateforme Modes de Garde JEDAI (2e, 3e, 13e--16e) et PROTIS (1e, 4e--12e)",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "d6385f5a-4243-4892-93cf-d1f287e7f380",
+        "nom": "Crèche associative Le Cana (15e) : pour les stagiaires en formation au Cana",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "429cea46-04d4-40d3-9460-3563febeed29",
+        "nom": "CMG (Complément Mode de Garde) CAF : aide financière pour la garde d'enfants de moins de 6 ans",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "d948cc33-b5d1-49e1-9501-1057c84f0ddf",
+        "nom": "AEEH (Allocation d'Éducation de l'Enfant Handicapé) si enfant TH",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "0e509ac3-13c4-4b1a-aca0-4db9614d71be",
+        "nom": "Relais Petite Enfance (RPE) : information sur les solutions de garde disponibles par secteur",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Toujours investiguer la situation familiale et le mode de garde dès le premier entretien — c'est un pré-requis à toute orientation vers une action à temps plein\n• Les plateformes modes de garde (JEDAI, PROTIS) ne gardent pas les enfants — elles trouvent la solution adaptée et sécurisent le budget : les orienter en amont de l'entrée en dispositif\n• Ne pas supposer que la personne a déjà une solution — poser explicitement la question\n• Le frein modes de garde touche aussi les personnes qui ont une solution mais fragile (grand-parent âgé, voisine) — anticiper les plans B"
+  },
+  {
+    "id": "frein-multi-freins",
+    "titre": "Cumul de freins (situation multi-problématiques)",
+    "description": "Situation dans laquelle plusieurs freins à l'insertion coexistent et s'alimentent mutuellement, rendant difficile toute intervention ciblée sur un seul levier. Le multi-freins n'est pas une simple addition de problèmes — c'est une dynamique systémique où chaque frein aggrave les autres. Il nécessite une approche globale et pluridisciplinaire, et des dispositifs à durée longue.",
+    "signaux_reperage": [
+      "Au diagnostic : identification de 3 freins ou plus simultanément",
+      "Historique de passages dans des dispositifs sans résultat — \"ça ne marche pas pour moi\"",
+      "Situation qui déborde le cadre de l'entretien emploi seul (urgences sociales, santé, logement)",
+      "Demandes multiples et contradictoires lors d'un même entretien",
+      "Épuisement visible du bénéficiaire face à l'accumulation des démarches"
+    ],
+    "thematiques_api": [
+      "remobilisation"
+    ],
+    "publics_api": [
+      "beneficiaires-des-minimas-sociaux",
+      "familles",
+      "personnes-en-situation-de-handicap"
+    ],
+    "freins_associes": [
+      "frein-confiance",
+      "frein-isolement",
+      "frein-eloignement-emploi",
+      "frein-logement",
+      "frein-sante",
+      "frein-budget",
+      "frein-modes-de-garde",
+      "frein-mobilite",
+      "frein-projet-pro",
+      "frein-langue",
+      "frein-numerique",
+      "frein-integration",
+      "frein-addiction",
+      "frein-violences",
+      "frein-situation-administrative",
+      "frein-acces-droits"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "f76f547d-d070-44bd-af2d-3ce4d7cabc7e",
+        "nom": "Diagnostic préalable indispensable : SAS Diagnostic Projet — prioriser les freins avant d'agir",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "7a1ea456-d411-452b-b1e3-9801671ec517",
+        "nom": "Accompagnement global long : DAPE avec AGT (PROTIS) ou psychologue du travail (CIERES)",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "fa658ed2-84af-4fe5-b369-fd8c143b27bd",
+        "nom": "Accompagnement très long terme : PLIE (jusqu'à 2 ans)",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "dd84cd13-1a98-49e8-a74a-a6bafe46bf92",
+        "nom": "Coordination pluridisciplinaire : travailler en lien avec le référent social, le médecin traitant, les services logement",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• La priorisation des freins est l'acte professionnel central face au multi-freins — tout traiter à la fois épuise le bénéficiaire et le conseiller\n• Règle pratique : commencer par les freins qui bloquent les autres (ex : logement instable → impossible de se projeter en emploi ; santé non stabilisée → impossible de tenir un rythme)\n• Le multi-freins est souvent invisibilisé — la personne présente un problème unique en apparence, le reste n'émerge qu'avec le temps et la confiance\n• Ne pas sur-orienter : chaque prescription supplémentaire est une charge cognitive et logistique — calibrer le nombre de démarches simultanées"
+  },
+  {
+    "id": "frein-numerique",
+    "titre": "Difficultés numériques / Illectronisme",
+    "description": "Difficultés à utiliser les outils numériques au niveau requis pour les démarches d'insertion et d'emploi : création et consultation d'une boîte mail, navigation sur les sites d'offres d'emploi, utilisation de l'espace personnel France Travail, dépôt de candidature en ligne, participation à des entretiens en visio. L'illectronisme (analphabétisme numérique) est un frein croissant avec la dématérialisation des services publics.",
+    "signaux_reperage": [
+      "Pas d'adresse mail valide ou adresse oubliée/inaccessible",
+      "Pas de compte France Travail ou compte non consulté depuis des mois",
+      "Candidatures uniquement en présentiel ou par courrier",
+      "Refus ou blocage face à un ordinateur lors d'un entretien ou atelier",
+      "Pas d'équipement (pas d'ordinateur, téléphone bas de gamme sans internet stable)",
+      "Connexion internet absente ou instable à domicile"
+    ],
+    "thematiques_api": [
+      "numerique"
+    ],
+    "publics_api": [
+      "seniors",
+      "personnes-exilees",
+      "residents-qpv-frr"
+    ],
+    "freins_associes": [
+      "frein-langue",
+      "frein-qualification",
+      "frein-isolement",
+      "frein-eloignement-emploi"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "10e2897a-933b-4776-b5db-0500aab6cdf9",
+        "nom": "Espace Numérique PROTIS (Marseille 8e) : accès et accompagnement aux démarches dématérialisées",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "81d71712-dcb3-4af4-8ce2-82618d704ef0",
+        "nom": "CIERES : CLÉA Numérique — certification compétences numériques de base",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "cc2d6146-d7a6-45ad-9055-be18eda8d47b",
+        "nom": "Conseillers Numériques France Service : accompagnement individuel aux démarches en ligne (gratuit)",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "2e3c0471-5b41-4b9a-9e47-9a9fee97d5c2",
+        "nom": "Espaces France Services sur Marseille : accès et aide pour les démarches dématérialisées",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "bbfd599c-27ef-420e-9606-7db21514d66c",
+        "nom": "Pass Numérique / Aidants Connect : pour les situations de dépendance numérique",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• L'illectronisme est souvent caché par honte — ne pas supposer qu'une personne maîtrise le numérique parce qu'elle a un smartphone\n• Toujours vérifier l'adresse mail ET sa consultation effective en début de suivi — pas de point d'entrée numérique = communication impossible\n• Le numérique s'apprend mieux dans un contexte fonctionnel (postuler à un vrai poste) que dans des formations abstraites\n• Anticiper le matériel : si la personne n'a pas d'ordinateur, identifier les lieux d'accès gratuits à proximité de son domicile"
+  },
+  {
+    "id": "frein-obligations-RSA",
+    "titre": "Incompréhension ou non-respect des obligations RSA",
+    "description": "Méconnaissance ou incompréhension des droits et des obligations liés au RSA — en particulier le Contrat d'Engagement Réciproque (CER), les démarches attendues, les conséquences du non-respect. Frein souvent invisible car les professionnels supposent que l'information a déjà été transmise. Particulièrement fréquent chez les nouveaux entrants, les allophones et les personnes avec difficultés de lecture.",
+    "signaux_reperage": [
+      "La personne ne sait pas ce que contient son CER ou ne l'a pas lu",
+      "Confusion entre RSA (allocation) et RSA (droits et devoirs)",
+      "Surprise ou incompréhension face à une demande de justificatif ou une convocation",
+      "\"On ne m'a jamais expliqué ça\"",
+      "Méconnaissance des conséquences du non-respect (suspension)",
+      "Allophones : explication du CER faite uniquement en français sans vérification de la compréhension"
+    ],
+    "thematiques_api": [
+      "difficultes-administratives-ou-juridiques"
+    ],
+    "publics_api": [
+      "beneficiaires-des-minimas-sociaux",
+      "personnes-exilees"
+    ],
+    "freins_associes": [
+      "frein-desengagement",
+      "frein-langue",
+      "frein-autonomie"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "0e218eb5-884b-4858-8b2e-c588bcac8e31",
+        "nom": "Module systématique de MORSE : droits et devoirs RSA — seul module obligatoire",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "6d205665-e25f-42fa-8099-d68d67cdbfef",
+        "nom": "Accueil RSA PROTIS : explication et contractualisation du CER",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "bd4d2ee2-c22a-4e51-94bb-5313e9bb19a1",
+        "nom": "Supports simplifiés : guides droits et devoirs RSA en FALC (Facile À Lire et Comprendre), versions multilingues si disponibles",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Ne jamais supposer que l'information a été transmise et comprise — toujours vérifier en posant des questions ouvertes (\"Qu'est-ce que vous avez compris de vos obligations ?\")\n• Le CER doit être co-construit, pas imposé — une obligation comprise et acceptée est beaucoup plus efficace qu'une obligation subie\n• Pour les allophones : s'assurer d'une compréhension réelle, pas seulement d'un acquiescement poli"
+  },
+  {
+    "id": "frein-projet-pro",
+    "titre": "Absence ou flou du projet professionnel",
+    "description": "Impossibilité ou grande difficulté à formuler une orientation professionnelle claire, réaliste et mobilisatrice. Peut prendre deux formes : absence totale de projet (ne sait pas du tout) ou faux projet (projet irréaliste, subi, ou copié sur ce qu'on croit attendu). Dans les deux cas, l'absence de cap cohérent rend toute stratégie de recherche d'emploi inefficace.",
+    "signaux_reperage": [
+      "Réponses vagues ou stéréotypées : \"Je veux travailler avec les gens\", \"Je veux un travail de bureau\"",
+      "Projet irréaliste non travaillé : reconversion vers un métier inaccessible sans formation longue, sans en avoir conscience",
+      "Projet subi : \"On m'a dit de faire ça\" sans appropriation personnelle",
+      "Candidatures tous azimuts sans stratégie — CV envoyés à des dizaines de métiers différents",
+      "Découragement rapide face aux refus — le projet n'est pas suffisamment ancré pour tenir"
+    ],
+    "thematiques_api": [
+      "choisir-un-metier",
+      "remobilisation"
+    ],
+    "publics_api": [
+      "jeunes",
+      "beneficiaires-des-minimas-sociaux",
+      "demandeurs-emploi"
+    ],
+    "freins_associes": [
+      "frein-eloignement-emploi",
+      "frein-confiance",
+      "frein-sante",
+      "frein-techniques-recherche"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "c48f698e-d73f-4a68-9791-9cb60a0de5fa",
+        "nom": "Outil central : SAS Diagnostic Projet — co-construction du projet en entretiens individuels",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "e5d1bd6d-acae-4618-9427-ddf2ba14105e",
+        "nom": "Si projet défini mais à affiner : DAPE avec psychologue du travail",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "f69b7d29-b4f3-4418-a46f-e31f66f2a0c5",
+        "nom": "Si projet défini et opérationnel : BOOST Emploi pour passer à la stratégie de recherche",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "793170c0-64ad-40d0-a5c0-9767e019a076",
+        "nom": "Si projet de création d'activité : ADIE — micro-crédit et accompagnement entrepreneurial",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "06a16e4c-3462-476d-9848-a82d1caf0d31",
+        "nom": "Outils CIP : inventaire de compétences, entretiens de valorisation, tests d'intérêt professionnel (RIASEC), immersions PMSMP",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Distinguer \"pas de projet\" (à construire) et \"mauvais projet\" (à déconstruire doucement) — la posture n'est pas la même\n• Le projet doit être à la fois désiré ET réaliste ET accessible — travailler les trois dimensions\n• La PMSMP est souvent plus efficace que tous les entretiens de bilan réunis pour valider ou invalider un projet — le réel tranche\n• Attention aux projets \"vitrine\" : certaines personnes formulent un projet attendu pour satisfaire le conseiller sans y croire — creuser avec des questions concrètes (\"Qu'avez-vous fait pour avancer vers ce projet ?\")"
+  },
+  {
+    "id": "frein-qualification",
+    "titre": "Manque ou obsolescence des qualifications",
+    "description": "Absence de diplôme, titre ou certification reconnu sur le marché du travail, ou détention de qualifications devenues obsolètes au regard des évolutions technologiques ou réglementaires du secteur visé. Frein objectif qui ferme l'accès à certains postes indépendamment des compétences réelles de la personne.",
+    "signaux_reperage": [
+      "Offres d'emploi qui exigent un diplôme non détenu par la personne",
+      "Métier réglementé visé sans l'habilitation requise (CACES, habilitation électrique, diplôme d'État médico-social...)",
+      "Compétences réelles présentes mais non certifiées — valorisables par la VAE",
+      "Rejet systématique par les ATS (filtrage automatique des candidatures) faute de mot-clé diplôme"
+    ],
+    "thematiques_api": [
+      "se-former"
+    ],
+    "publics_api": [
+      "demandeurs-emploi",
+      "actifs"
+    ],
+    "freins_associes": [
+      "frein-eloignement-emploi",
+      "frein-confiance",
+      "frein-multi-freins"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "4d6fcd01-8c1f-4f8d-9a71-12f7c3a08b00",
+        "nom": "Accompagnement long avec formation intégrée : PLIE",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "8ada01ba-bd3f-4c92-b26e-eba9ae8c53ac",
+        "nom": "Financement formation : AIF France Travail, CPF, plan de formation Région",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "965c218e-5294-460c-8688-37c7a646b140",
+        "nom": "VAE (Validation des Acquis de l'Expérience) — à explorer si compétences réelles présentes",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "dde102c8-fc1b-47b8-835c-6cab19828483",
+        "nom": "Certifications courtes : CLÉA (savoirs de base), CLÉA Numérique, PCIE — portées par CIERES",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "659f8b8c-d605-41b3-84c5-eb011bb6385d",
+        "nom": "Formations qualifiantes courtes : Sud Formation, EPFF, GRETA",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Toujours explorer la VAE avant d'orienter vers une formation longue — si les compétences existent, la certification peut être obtenue plus vite\n• Le CPF est souvent méconnu des BRSA — vérifier le solde et accompagner l'activation\n• Distinguer qualification manquante (diplôme absent) et compétence manquante (savoir-faire réellement absent) — la réponse n'est pas la même\n• Les certifications courtes (CLÉA, habilitations) sont souvent plus mobilisables rapidement que les diplômes longs"
+  },
+  {
+    "id": "frein-sante",
+    "titre": "Problèmes de santé (physique ou mentale)",
+    "description": "Problèmes de santé — physiques, psychiques ou liés aux addictions — qui limitent la capacité de travail, réduisent le champ des postes accessibles, ou rendent difficile la régularité et la tenue des engagements nécessaires à l'insertion. Frein souvent tu ou minimisé par les bénéficiaires qui craignent d'être perçus comme non employables.",
+    "signaux_reperage": [
+      "Absences récurrentes aux rendez-vous pour raisons médicales",
+      "Fatigue chronique ou douleurs mentionnées comme obstacle au travail",
+      "Traitement médicamenteux lourd (somnolence, effets secondaires sur la concentration)",
+      "Problèmes de santé mentale : symptômes dépressifs, anxiété sociale, phobies",
+      "Addiction active ou en cours de traitement (CSAPA) → voir frein addiction",
+      "Handicap visible ou invisible non reconnu administrativement (RQTH non faite)",
+      "Contre-indications médicales au poste visé non anticipées"
+    ],
+    "thematiques_api": [
+      "sante"
+    ],
+    "publics_api": [
+      "personnes-en-situation-de-handicap",
+      "beneficiaires-des-minimas-sociaux"
+    ],
+    "freins_associes": [
+      "frein-eloignement-emploi",
+      "frein-confiance",
+      "frein-mobilite",
+      "frein-multi-freins"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "a388a23d-e6f9-44af-9720-c21283ab2282",
+        "nom": "RQTH (Reconnaissance de la Qualité de Travailleur Handicapé) : MDPH 13 — à initier si applicable, ouvre des droits et aménagements",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "78dfdd9c-1a86-4f58-bdee-d43fe5b94cab",
+        "nom": "Cap Emploi : accompagnement spécialisé TH vers l'emploi",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "183a5c45-ec24-4a94-bab3-43b60cb593ca",
+        "nom": "CSAPA (via SOS Solidarités / Groupe SOS) pour les problématiques addictions",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "ce75cea4-ede5-4f19-8f50-b41e556c53ec",
+        "nom": "SIDIIS (Groupe SOS) : équipe mobile santé mentale + insertion (8e--10e arrondissements)",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "852c819c-dbf8-4c63-8ad8-18fbd4194c35",
+        "nom": "Médecin du travail / bilan de santé France Travail : pour les contre-indications à objectiver",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "2b271598-6748-42c9-8498-4599bff9bfae",
+        "nom": "DAPE avec psychologue du travail (CIERES, PROTIS-AGT) pour les situations complexes",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• La santé est un sujet sensible — ne pas investiguer de façon frontale ; laisser émerger à travers la question des contraintes horaires, physiques, de déplacement\n• La RQTH n'est pas une étiquette mais un outil : elle ouvre des aménagements (temps partiel thérapeutique, aides AGEFIPH) et protège en emploi\n• Le CIP n'est pas médecin — orienter vers les professionnels compétents, coordonner, ne pas diagnostiquer\n• Certaines personnes ne veulent pas entendre parler de RQTH par peur de la stigmatisation — travailler d'abord la représentation avant la démarche\n• Santé mentale et addiction : travailler en coordination avec le référent santé ou social — ne pas porter seul ces situations"
+  },
+  {
+    "id": "frein-situation-administrative",
+    "titre": "Situation administrative précaire (titre de séjour, sans-papiers)",
+    "description": "Situation dans laquelle le statut administratif de la personne sur le territoire français est incertain, précaire ou irrégulier, ce qui conditionne ou bloque l'accès à l'emploi, aux droits sociaux et aux dispositifs d'insertion. La situation administrative est un prérequis absolu à vérifier dès le premier entretien — elle conditionne tout le reste du parcours. Différentes situations à distinguer : Situation Droit au travail Accès RSA Accès FT ———————————————————- ————————— ———————-- —————— Citoyen UE Oui Oui (5 ans résidence) Oui Titre de séjour \"salarié\" / \"travailleur temporaire\" Oui Selon durée résidence Oui Titre \"vie privée et familiale\" Oui Oui Oui Réfugié statutaire / protection subsidiaire Oui Oui Oui Demandeur d'asile Après 6 mois d'attente Non Non Sans titre / irrégulier Non (sauf régularisation) Non Non Débouté du droit d'asile Non Non Non Titre expiré en attente de renouvellement Oui (récépissé) Selon cas Oui si récépissé",
+    "signaux_reperage": [
+      "Hésitation ou refus de présenter des documents d'identité",
+      "Titre de séjour expiré présenté sans récépissé de renouvellement",
+      "Mention d'une \"procédure en cours\" sans précision",
+      "Travail non déclaré ou \"au noir\" évoqué comme seule source de revenus",
+      "Peur marquée des démarches administratives ou des institutions",
+      "Adresse instable, hébergement précaire (souvent lié)",
+      "Absence de numéro de sécurité sociale stable"
+    ],
+    "thematiques_api": [
+      "difficultes-administratives-ou-juridiques"
+    ],
+    "publics_api": [
+      "personnes-exilees",
+      "personnes-en-situation-juridique-specifique"
+    ],
+    "freins_associes": [
+      "frein-acces-droits",
+      "frein-langue",
+      "frein-isolement",
+      "frein-logement",
+      "frein-hors-radar"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "52c0b2ac-199b-4d35-a777-57eccccb9520",
+        "nom": "Vérification du titre de séjour",
+        "description": ": toujours vérifier la validité et le type de titre avant toute orientation emploi",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "bea39aea-f254-46d5-ac09-f870767233e0",
+        "nom": "Récépissé de renouvellement",
+        "description": ": document valant titre de séjour pendant le renouvellement — accepté par France Travail et la plupart des employeurs",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "f25fbdc9-714d-4b27-b7ae-ca21ea065af9",
+        "nom": "Permanences juridiques",
+        "description": ": ADDE (Avocats pour la Défense des Droits des Étrangers), CIMADE, Forum Réfugiés — pour les démarches de régularisation",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "1d0467be-b3d6-4d3f-b798-04c017490171",
+        "nom": "OFII",
+        "description": ": pour les réfugiés et bénéficiaires de protection — parcours d'intégration, CIR",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "07ae94e9-b60d-48eb-ac6f-a3e962eef15d",
+        "nom": "CADA/HUDA : pour les demandeurs d'asile — hébergement et accompagnement procédure",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "a2544218-bd86-423e-9ebe-fd3085e026ab",
+        "nom": "PASS Santé",
+        "description": "(anciennement AME) : accès aux soins pour les personnes en situation irrégulière",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "3e7da536-9fdd-4fdd-9a6f-b3a8eb93fba2",
+        "nom": "Associations locales : CIMADE Marseille, Médecins du Monde, France Horizon",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Le CIP n'est pas un agent de contrôle — son rôle n'est pas de vérifier la légalité du séjour mais d'orienter vers les bons interlocuteurs\n• Toujours vérifier le titre de séjour en début de parcours — pas pour contrôler mais pour adapter l'orientation et éviter de promettre des démarches inaccessibles\n• Une personne sans titre ne peut pas être orientée vers France Travail ou un emploi déclaré — orienter d'abord vers une association juridique pour tenter une régularisation\n• Les récépissés de renouvellement sont souvent méconnus des employeurs — accompagner la personne dans l'explication à l'employeur potentiel\n• La peur des institutions est réelle et légitime pour ce public — instaurer la confiance avant toute démarche, rassurer sur le secret professionnel\n• Ne jamais promettre une régularisation — ce n'est pas du ressort du CIP et les situations sont très variables\n• Articulation avec le travailleur social : les démarches de régularisation sont complexes et chronophages — ne pas les prendre en charge seul"
+  },
+  {
+    "id": "frein-techniques-recherche",
+    "titre": "Manque de techniques de recherche d'emploi",
+    "description": "Méconnaissance ou maîtrise insuffisante des outils et méthodes de recherche d'emploi : rédaction de CV et lettre de motivation, utilisation des jobboards et réseaux sociaux professionnels, techniques d'entretien, activation du réseau, candidatures spontanées. Frein technique et non motivationnel — la personne veut travailler mais ne sait pas comment s'y prendre efficacement.",
+    "signaux_reperage": [
+      "CV : chronologie inversée non maîtrisée, compétences non valorisées, fautes, mise en page inadaptée",
+      "Lettres de motivation : copiées-collées, non personnalisées, trop longues ou trop courtes",
+      "Stratégie : candidatures uniquement sur les offres publiées (marché caché non exploré)",
+      "Réseau : \"Je ne connais personne\" alors qu'un réseau existe mais n'est pas activé",
+      "Entretien : pas de préparation, incapacité à répondre aux questions classiques, gestion du stress non travaillée",
+      "Numérique : pas de profil LinkedIn, méconnaissance des jobboards métier"
+    ],
+    "thematiques_api": [
+      "preparer-sa-candidature",
+      "trouver-un-emploi"
+    ],
+    "publics_api": [
+      "demandeurs-emploi",
+      "jeunes"
+    ],
+    "freins_associes": [
+      "frein-projet-pro",
+      "frein-numerique",
+      "frein-confiance"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "a1b7766b-9b86-410b-9a56-812419caf8aa",
+        "nom": "Dispositif central : BOOST Emploi — accompagnement intensif sur la stratégie de recherche",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "43832c30-a64a-4a0a-b7cd-e5ec66982215",
+        "nom": "Ateliers techniques dans le cadre du DAPE",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "8e9c79a4-f392-4402-99f8-69d4d90ef04a",
+        "nom": "Ateliers France Travail : CV, lettre de motivation, préparation entretien, LinkedIn",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "3c273845-afdd-447f-83f2-418cadb1d76c",
+        "nom": "Ressources CIP : modèles de CV par secteur, fiches techniques entretien, annuaires jobboards par métier",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Ce frein est souvent le plus rapide à lever — quelques séances de travail pratique suffisent si le projet est clair\n• Le marché caché (60--70% des recrutements non publiés) est systématiquement sous-exploité — en faire un axe de travail systématique\n• LinkedIn est devenu incontournable dans de nombreux secteurs — vérifier si le secteur cible l'utilise avant d'investir du temps dessus\n• Attention : travailler les techniques sans projet défini est contre-productif — s'assurer que le projet est stabilisé d'abord"
+  },
+  {
+    "id": "frein-violences",
+    "titre": "Violences conjugales ou intrafamiliales",
+    "description": "Situation de violence exercée par un partenaire intime ou un membre de la famille — physique, psychologique, sexuelle, économique — qui constitue un frein majeur à l'insertion professionnelle. La violence conjugale ou intrafamiliale désorganise la vie de la personne, détruit la confiance en soi, isole et contrôle. La dimension économique est centrale dans l'insertion : le contrôle financier exercé par le conjoint violent est souvent l'un des principaux outils de l'emprise — l'accès à l'emploi et à l'autonomie financière peut être perçu comme une menace par l'auteur, et donc activement sabotéé. Frein fréquemment invisible en entretien CIP — la personne ne l'évoque pas spontanément par honte, par peur, ou parce qu'elle ne l'identifie pas elle-même comme tel.",
+    "signaux_reperage": [
+      "Marques physiques visibles (hématomes, blessures) minimisées ou attribuées à des accidents",
+      "Comportement très anxieux, regard sur le téléphone, peur d'être en retard",
+      "Partenaire présent à l'entretien, répondant à la place de la personne",
+      "Appels téléphoniques répétés et intrusifs du partenaire pendant l'entretien",
+      "Ruptures de parcours répétées sans explication claire",
+      "Refus ou peur de s'inscrire à des formations / emplois pour des raisons floues",
+      "\"Mon mari ne veut pas que je travaille\"",
+      "Dépendance financière totale au conjoint — aucun accès aux comptes",
+      "Isolement social total — aucun réseau en dehors du foyer"
+    ],
+    "thematiques_api": [
+      "famille",
+      "sante",
+      "remobilisation"
+    ],
+    "publics_api": [
+      "femmes",
+      "personnes-en-situation-durgence"
+    ],
+    "freins_associes": [
+      "frein-confiance",
+      "frein-isolement",
+      "frein-projet-pro",
+      "frein-budget",
+      "frein-logement",
+      "frein-sante",
+      "frein-modes-de-garde"
+    ],
+    "ressources_terrain": [
+      {
+        "id": "5ffcc1ad-5417-4bc1-bf8b-9553cb37792f",
+        "nom": "3919",
+        "description": "Violences Femmes Info (numéro national gratuit, 24h/24, 7j/7)",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "e673d94c-9cb3-4b1f-809d-398272235106",
+        "nom": "17",
+        "description": "Police / Gendarmerie si danger immédiat",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "12780110-c0b4-4558-a76d-59b600773da5",
+        "nom": "CHRS spécialisés femmes victimes de violences",
+        "description": "(via CHRS Marseille / SIAO 13) — hébergement d'urgence sécurisé",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "bb65d403-97bc-4853-9e90-bf9e4eeb558e",
+        "nom": "CIDFF 13",
+        "description": "(Centre d'Information sur les Droits des Femmes et des Familles) — accompagnement juridique, social, psychologique",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "c23d0d9a-b4bd-4ac5-9149-381f7046bce9",
+        "nom": "SOS Femmes Alternatives",
+        "description": "hébergement et accompagnement spécialisé",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "99033f8a-a491-44a6-9ad5-a600aecf59e8",
+        "nom": "Solidarité Femmes",
+        "description": "réseau national, présent sur Marseille",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "c5db812b-1770-4563-ba1a-c3e7d0e0459e",
+        "nom": "ADSF",
+        "description": "(Association pour le Développement Social des Femmes) — accompagnement global",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "eda80c2f-00f5-45f2-b940-959b67ac11e1",
+        "nom": "DAPE — accompagnement global, travail sur les freins périphériques",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "24600799-2f40-46e4-87d8-8fbab2d1d670",
+        "nom": "SAS Diagnostic Projet — reconstruction d'un projet professionnel dans un cadre sécurisant",
+        "description": null,
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      },
+      {
+        "id": "c2a95e8f-d47c-40ab-a05d-68a981e7ce9d",
+        "nom": "Garantie d'activité",
+        "description": "dispositif d'accompagnement intensif pour les femmes victimes de violences (si disponible localement)",
+        "contact": null,
+        "adresse": null,
+        "site_web": null,
+        "source": "corpus"
+      }
+    ],
+    "notes_cip": "• Ne jamais forcer la parole — si la personne ne parle pas, ne pas insister ; poser des questions ouvertes sur les \"contraintes\" et laisser émerger\n• Ne jamais confronter l'auteur présent — si le conjoint est présent à l'entretien et semble contrôlant, tenter de voir la personne seule (ex : \"j'ai besoin de compléter quelques informations personnelles\")\n• La sécurité avant l'insertion — ne jamais précipiter une démarche d'autonomisation si la personne n'est pas en sécurité ; une reprise d'emploi visible peut déclencher une escalade de violences\n• Le secret professionnel s'applique — sauf danger grave et imminent (enfants en danger, violences graves)\n• Coordonner avec le travailleur social référent si la personne est BRSA — ne pas porter seul ces situations\n• L'emprise psychologique est souvent aussi forte que la violence physique — ne pas minimiser \"il ne me frappe pas mais...\"\n• Certaines femmes retournent chez l'auteur plusieurs fois avant de partir définitivement — ne pas juger, maintenir le lien et la porte ouverte"
+  }
+]

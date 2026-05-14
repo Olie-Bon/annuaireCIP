@@ -19,9 +19,12 @@ struct ContentView: View {
                 .tabItem { Label("Services", systemImage: "hands.and.sparkles") }
 
             NavigationStack {
-                CombinedMapView(structures: vm.structures, services: vm.services)
+                CombinedMapView(vm: vm)
             }
             .tabItem { Label("Carte", systemImage: "map") }
+
+            FreinsView()
+                .tabItem { Label("Parcours", systemImage: "figure.walk") }
         }
         .task { await vm.load() }
     }
@@ -35,6 +38,7 @@ private struct StructuresTab: View {
     @State private var showFiltres = false
 
     private var filtered: [DIStructure] { vm.filteredStructures(query: query) }
+    private var isFiltered: Bool { !query.isEmpty || vm.hasActiveStructureFilters }
 
     var body: some View {
         NavigationStack {
@@ -42,26 +46,37 @@ private struct StructuresTab: View {
                 if vm.isLoading {
                     ProgressView("Chargement…")
                 } else if let error = vm.errorMessage {
-                    ContentUnavailableView(
-                        "Erreur",
-                        systemImage: "exclamationmark.triangle",
-                        description: Text(error)
-                    )
+                    ContentUnavailableView {
+                        Label("Erreur de chargement", systemImage: "exclamationmark.triangle")
+                    } description: {
+                        Text(error)
+                    } actions: {
+                        Button("Réessayer") { Task { await vm.load() } }
+                            .buttonStyle(.borderedProminent)
+                    }
                 } else if filtered.isEmpty {
                     ContentUnavailableView.search(text: query)
                 } else {
-                    List(filtered) { structure in
-                        NavigationLink(destination: StructureDetailView(
-                            structure: structure,
-                            services: vm.services.filter { $0.structureId == structure.id }
-                        )) {
-                            StructureRow(structure: structure)
+                    List {
+                        if isFiltered {
+                            Text("\(filtered.count) résultat\(filtered.count > 1 ? "s" : "") sur \(vm.structures.count)")
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                                .listRowBackground(Color.clear)
+                        }
+                        ForEach(filtered) { structure in
+                            NavigationLink(destination: StructureDetailView(
+                                structure: structure,
+                                services: vm.services.filter { $0.structureId == structure.id }
+                            )) {
+                                StructureRow(structure: structure)
+                            }
                         }
                     }
                     .listStyle(.plain)
                 }
             }
-            .navigationTitle("Structures (\(filtered.count))")
+            .navigationTitle("Structures (\(vm.structures.count))")
             .searchable(text: $query, prompt: "Nom, commune, description…")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
@@ -87,9 +102,8 @@ private struct ServicesTab: View {
     @State private var query = ""
     @State private var showFiltres = false
 
-    private var filtered: [DIService] {
-        vm.filteredServices(query: query)
-    }
+    private var filtered: [DIService] { vm.filteredServices(query: query) }
+    private var isFiltered: Bool { !query.isEmpty || vm.hasActiveFilters }
 
     var body: some View {
         NavigationStack {
@@ -97,23 +111,34 @@ private struct ServicesTab: View {
                 if vm.isLoading {
                     ProgressView("Chargement…")
                 } else if let error = vm.errorMessage {
-                    ContentUnavailableView(
-                        "Erreur",
-                        systemImage: "exclamationmark.triangle",
-                        description: Text(error)
-                    )
+                    ContentUnavailableView {
+                        Label("Erreur de chargement", systemImage: "exclamationmark.triangle")
+                    } description: {
+                        Text(error)
+                    } actions: {
+                        Button("Réessayer") { Task { await vm.load() } }
+                            .buttonStyle(.borderedProminent)
+                    }
                 } else if filtered.isEmpty {
                     ContentUnavailableView.search(text: query)
                 } else {
-                    List(filtered) { service in
-                        NavigationLink(destination: ServiceDetailView(service: service)) {
-                            ServiceRow(service: service)
+                    List {
+                        if isFiltered {
+                            Text("\(filtered.count) résultat\(filtered.count > 1 ? "s" : "") sur \(vm.services.count)")
+                                .font(.footnote)
+                                .foregroundStyle(.secondary)
+                                .listRowBackground(Color.clear)
+                        }
+                        ForEach(filtered) { service in
+                            NavigationLink(destination: ServiceDetailView(service: service)) {
+                                ServiceRow(service: service)
+                            }
                         }
                     }
                     .listStyle(.plain)
                 }
             }
-            .navigationTitle("Services (\(filtered.count))")
+            .navigationTitle("Services (\(vm.services.count))")
             .searchable(text: $query, prompt: "Nom, type, thématique, commune…")
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
@@ -138,18 +163,25 @@ private struct StructureRow: View {
     let structure: DIStructure
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(structure.nom)
-                .font(.headline)
-            if !structure.addressLine.isEmpty {
-                Text(structure.addressLine)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+        HStack(alignment: .top) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(structure.nom)
+                    .font(.headline)
+                if !structure.addressLine.isEmpty {
+                    Text(structure.addressLine)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+                if let tel = structure.telephone {
+                    Text(tel)
+                        .font(.caption)
+                        .foregroundStyle(.tertiary)
+                }
             }
-            if let tel = structure.telephone {
-                Text(tel)
-                    .font(.caption)
-                    .foregroundStyle(.tertiary)
+            Spacer()
+            if let score = structure.scoreQualite {
+                ScoreQualiteView(score: score)
+                    .padding(.top, 2)
             }
         }
         .padding(.vertical, 4)
@@ -160,18 +192,25 @@ private struct ServiceRow: View {
     let service: DIService
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(service.nom)
-                .font(.headline)
-            if let type_ = service.type {
-                Text(type_)
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
+        HStack(alignment: .top) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(service.nom)
+                    .font(.headline)
+                if let type_ = service.type {
+                    Text(type_)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+                if !service.addressLine.isEmpty {
+                    Text(service.addressLine)
+                        .font(.caption)
+                        .foregroundStyle(.tertiary)
+                }
             }
-            if !service.addressLine.isEmpty {
-                Text(service.addressLine)
-                    .font(.caption)
-                    .foregroundStyle(.tertiary)
+            Spacer()
+            if let score = service.scoreQualite {
+                ScoreQualiteView(score: score)
+                    .padding(.top, 2)
             }
         }
         .padding(.vertical, 4)
