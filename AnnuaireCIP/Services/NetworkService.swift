@@ -44,7 +44,28 @@ actor NetworkService {
         return request
     }
 
-    // MARK: - Generic paginated fetch
+    // MARK: - Fetch helpers
+
+    private func fetchFirstPage<T: Decodable>(
+        path: String,
+        queryItems: [URLQueryItem],
+        size: Int = 100
+    ) async throws -> [T] {
+        let items = queryItems + [
+            URLQueryItem(name: "page", value: "1"),
+            URLQueryItem(name: "size", value: "\(size)")
+        ]
+        let request = try makeRequest(path: path, queryItems: items)
+        let (data, response) = try await urlSession.data(for: request)
+        if let http = response as? HTTPURLResponse, !(200...299).contains(http.statusCode) {
+            throw NetworkError.httpError(statusCode: http.statusCode)
+        }
+        do {
+            return try JSONDecoder().decode(PagedResponse<T>.self, from: data).items
+        } catch {
+            throw NetworkError.decodingError(error)
+        }
+    }
 
     private func fetchAllPages<T: Decodable>(
         path: String,
@@ -119,9 +140,10 @@ actor NetworkService {
             queryItems.append(URLQueryItem(name: "score_qualite_minimum", value: String(score)))
         }
         queryItems.append(URLQueryItem(name: "exclure_doublons", value: exclureDoublons ? "true" : "false"))
-        let results: [SearchServiceResult] = try await fetchAllPages(
+        let results: [SearchServiceResult] = try await fetchFirstPage(
             path: "/api/v1/search/services",
-            baseQueryItems: queryItems
+            queryItems: queryItems,
+            size: 100
         )
         return results.map(\.service)
     }

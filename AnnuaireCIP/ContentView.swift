@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var vm = AnnuaireViewModel()
+    @State private var parcoursVM = ParcoursViewModel()
 
     var body: some View {
         TabView {
@@ -23,7 +24,7 @@ struct ContentView: View {
             }
             .tabItem { Label("Carte", systemImage: "map") }
 
-            FreinsView()
+            FreinsView(parcoursVM: parcoursVM, annuaireVM: vm)
                 .tabItem { Label("Parcours", systemImage: "figure.walk") }
         }
         .task { await vm.load() }

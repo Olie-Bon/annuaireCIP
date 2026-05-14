@@ -1,6 +1,11 @@
 import SwiftUI
+import CoreLocation
+
+// MARK: - FreinsView
 
 struct FreinsView: View {
+    let parcoursVM: ParcoursViewModel
+    let annuaireVM: AnnuaireViewModel
     @State private var freins: [Frein] = []
     @State private var query = ""
     @State private var errorMessage: String?
@@ -12,28 +17,35 @@ struct FreinsView: View {
 
     var body: some View {
         NavigationStack {
-            Group {
+            List {
+                Section {
+                    AdresseBeneficiaireCard(vm: parcoursVM)
+                }
+
                 if let error = errorMessage {
-                    ContentUnavailableView {
-                        Label("Impossible de charger les freins", systemImage: "exclamationmark.triangle")
-                    } description: {
-                        Text(error)
+                    Section {
+                        Label(error, systemImage: "exclamationmark.triangle")
+                            .foregroundStyle(.red)
                     }
                 } else if filtered.isEmpty && !query.isEmpty {
-                    ContentUnavailableView.search(text: query)
+                    Section {
+                        Text("Aucun frein pour « \(query) »")
+                            .foregroundStyle(.secondary)
+                    }
                 } else {
-                    List(filtered) { frein in
-                        NavigationLink(destination: FreinDetailView(frein: frein)) {
+                    ForEach(filtered) { frein in
+                        NavigationLink(destination: FreinDetailView(frein: frein, parcoursVM: parcoursVM, annuaireVM: annuaireVM)) {
                             FreinRow(frein: frein)
                         }
                     }
-                    .listStyle(.plain)
                 }
             }
-            .navigationTitle("Freins (\(freins.count))")
+            .listStyle(.inset)
+            .navigationTitle("Parcours")
             .searchable(text: $query, prompt: "Rechercher un frein…")
         }
         .onAppear {
+            guard freins.isEmpty else { return }
             do {
                 freins = try FreinsService.loadFreins()
             } catch {
@@ -43,7 +55,54 @@ struct FreinsView: View {
     }
 }
 
-// MARK: - Row
+// MARK: - Adresse bénéficiaire
+
+private struct AdresseBeneficiaireCard: View {
+    @Bindable var vm: ParcoursViewModel
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Label("Adresse du bénéficiaire", systemImage: "person.crop.circle")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            HStack(spacing: 8) {
+                TextField("12 rue des Oliviers, Marseille…", text: $vm.adresse)
+                    .textFieldStyle(.plain)
+                    .onSubmit { Task { await vm.geocoderAdresse() } }
+
+                if vm.isGeocoding {
+                    ProgressView().scaleEffect(0.8)
+                } else if vm.aCoordonnees {
+                    Button { vm.reset() } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(.secondary)
+                    }
+                    .buttonStyle(.plain)
+                } else if !vm.adresse.isEmpty {
+                    Button { Task { await vm.geocoderAdresse() } } label: {
+                        Image(systemName: "arrow.right.circle.fill")
+                            .foregroundStyle(.tint)
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+
+            if let commune = vm.communeGeocodee {
+                Label("Localisé : \(commune)", systemImage: "checkmark.circle.fill")
+                    .font(.caption)
+                    .foregroundStyle(.green)
+            } else if let error = vm.geocodingError {
+                Label(error, systemImage: "exclamationmark.circle")
+                    .font(.caption)
+                    .foregroundStyle(.red)
+            }
+        }
+        .padding(.vertical, 4)
+    }
+}
+
+// MARK: - Frein row
 
 private struct FreinRow: View {
     let frein: Frein
@@ -61,11 +120,13 @@ private struct FreinRow: View {
     }
 }
 
-// MARK: - Detail
+// MARK: - Frein detail
 
 struct FreinDetailView: View {
     let frein: Frein
-    @State private var servicesResultats: [DIService] = []
+    let parcoursVM: ParcoursViewModel
+    let annuaireVM: AnnuaireViewModel
+    @State private var servicesResultats: [(service: DIService, distance: Double?)] = []
     @State private var isSearching = false
     @State private var searchError: String?
     @State private var showServices = false
@@ -128,22 +189,32 @@ struct FreinDetailView: View {
                         Text("Aucun service trouvé pour ces thématiques.")
                             .foregroundStyle(.secondary)
                     } else {
-                        ForEach(servicesResultats) { service in
-                            NavigationLink(destination: ServiceDetailView(service: service)) {
+                        ForEach(servicesResultats, id: \.service.id) { item in
+                            NavigationLink(destination: ServiceDetailView(service: item.service)) {
                                 VStack(alignment: .leading, spacing: 2) {
-                                    Text(service.nom).font(.headline)
-                                    if let commune = service.commune {
-                                        Text(commune).font(.caption).foregroundStyle(.secondary)
+                                    Text(item.service.nom).font(.headline)
+                                    HStack(spacing: 8) {
+                                        if let commune = item.service.commune {
+                                            Text(commune).font(.caption).foregroundStyle(.secondary)
+                                        }
+                                        if let dist = item.distance {
+                                            Text(distanceLabel(dist))
+                                                .font(.caption)
+                                                .foregroundStyle(.tertiary)
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 } else {
-                    Button {
-                        Task { await searchServices() }
-                    } label: {
-                        Label("Voir les services data·inclusion", systemImage: "magnifyingglass")
+                    Button { searchServices() } label: {
+                        Label(parcoursVM.labelRecherche, systemImage: parcoursVM.iconRecherche)
+                    }
+                    if !parcoursVM.aCoordonnees {
+                        Text("Saisissez l'adresse du bénéficiaire dans Parcours pour des résultats géolocalisés.")
+                            .font(.caption)
+                            .foregroundStyle(.tertiary)
                     }
                 }
             } header: {
@@ -155,21 +226,51 @@ struct FreinDetailView: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
+        // Réinitialise les résultats si l'adresse change entre deux consultations
+        .onChange(of: parcoursVM.coordonnees?.latitude) {
+            showServices = false
+            servicesResultats = []
+        }
     }
 
-    private func searchServices() async {
+    private func searchServices() {
         isSearching = true
         searchError = nil
         defer { isSearching = false }
-        do {
-            servicesResultats = try await NetworkService.shared.searchServices(
-                codeCommune: "13055",
-                thematiques: frein.thematiquesAPI.isEmpty ? nil : frein.thematiquesAPI
-            )
-            showServices = true
-        } catch {
-            searchError = error.localizedDescription
+
+        let thematiques = Set(frein.thematiquesAPI)
+        let source = annuaireVM.services
+
+        let filtered: [DIService] = thematiques.isEmpty ? source : source.filter { service in
+            (service.thematiques ?? []).contains { thematique in
+                thematiques.contains { prefix in
+                    thematique == prefix || thematique.hasPrefix(prefix + "--")
+                }
+            }
         }
+
+        if let coord = parcoursVM.coordonnees {
+            let point = CLLocation(latitude: coord.latitude, longitude: coord.longitude)
+            servicesResultats = filtered
+                .compactMap { service -> (DIService, Double?)? in
+                    guard let lat = service.latitude, let lon = service.longitude else { return nil }
+                    let dist = point.distance(from: CLLocation(latitude: lat, longitude: lon))
+                    return (service, dist)
+                }
+                .sorted { $0.1! < $1.1! }
+        } else {
+            servicesResultats = filtered
+                .sorted { ($0.scoreQualite ?? -1) > ($1.scoreQualite ?? -1) }
+                .map { ($0, nil) }
+        }
+
+        showServices = true
+    }
+
+    private func distanceLabel(_ metres: Double) -> String {
+        metres < 1000
+            ? "\(Int(metres)) m"
+            : String(format: "%.1f km", metres / 1000)
     }
 }
 

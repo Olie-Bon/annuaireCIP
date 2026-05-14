@@ -7,12 +7,12 @@ enum MapLayer: String, CaseIterable {
 }
 
 struct CombinedMapView: View {
-    let structures: [DIStructure]
-    let services: [DIService]
+    @Bindable var vm: AnnuaireViewModel
 
     @State private var layer: MapLayer = .structures
     @State private var selectedStructure: DIStructure?
     @State private var selectedService: DIService?
+    @State private var showFiltres = false
     @State private var position: MapCameraPosition = .region(
         MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: 43.3, longitude: 5.4),
@@ -20,18 +20,22 @@ struct CombinedMapView: View {
         )
     )
 
-    private var locatableStructures: [DIStructure] { structures.filter { $0.coordinate != nil } }
-    private var locatableServices:   [DIService]   { services.filter   { $0.coordinate != nil } }
+    private var filteredStructures: [DIStructure] { vm.filteredStructures().filter { $0.coordinate != nil } }
+    private var filteredServices:   [DIService]   { vm.filteredServices().filter   { $0.coordinate != nil } }
 
     private var count: Int {
-        layer == .structures ? locatableStructures.count : locatableServices.count
+        layer == .structures ? filteredStructures.count : filteredServices.count
+    }
+
+    private var hasActiveFilters: Bool {
+        layer == .structures ? vm.hasActiveStructureFilters : vm.hasActiveFilters
     }
 
     var body: some View {
         Map(position: $position) {
             UserAnnotation()
             if layer == .structures {
-                ForEach(locatableStructures) { structure in
+                ForEach(filteredStructures) { structure in
                     Annotation(structure.nom, coordinate: structure.coordinate!) {
                         Image(systemName: "building.2.fill")
                             .foregroundStyle(.white)
@@ -46,7 +50,7 @@ struct CombinedMapView: View {
                     }
                 }
             } else {
-                ForEach(locatableServices) { service in
+                ForEach(filteredServices) { service in
                     Annotation(service.nom, coordinate: service.coordinate!) {
                         Image(systemName: "hands.and.sparkles.fill")
                             .foregroundStyle(.white)
@@ -72,7 +76,7 @@ struct CombinedMapView: View {
                 if let structure = selectedStructure {
                     StructureCallout(
                         structure: structure,
-                        services: services.filter { $0.structureId == structure.id },
+                        services: vm.services.filter { $0.structureId == structure.id },
                         onDismiss: { selectedStructure = nil }
                     )
                         .transition(.move(edge: .bottom).combined(with: .opacity))
@@ -102,6 +106,17 @@ struct CombinedMapView: View {
                 .pickerStyle(.segmented)
                 .frame(width: 220)
             }
+            ToolbarItem(placement: .primaryAction) {
+                Button { showFiltres.toggle() } label: {
+                    Image(systemName: hasActiveFilters
+                          ? "line.3.horizontal.decrease.circle.fill"
+                          : "line.3.horizontal.decrease.circle")
+                }
+            }
+        }
+        .inspector(isPresented: $showFiltres) {
+            FiltresView(vm: vm, mode: layer == .structures ? .structures : .services)
+                .inspectorColumnWidth(min: 260, ideal: 300, max: 360)
         }
     }
 }

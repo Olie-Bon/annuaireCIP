@@ -108,6 +108,18 @@ struct FiltresView: View {
             }
         }
 
+        let arrons = arrondissementsDisponibles
+        if !arrons.isEmpty {
+            FilterSection("Arrondissements") {
+                ForEach(arrons, id: \.self) { n in
+                    CheckRow(
+                        label: arrondissementLabel(n),
+                        isOn: vm.selectedArrondissements.contains(n)
+                    ) { vm.selectedArrondissements.toggle(n) }
+                }
+            }
+        }
+
         let fraisItems = effectiveFrais
         FilterSection("Frais") {
             if fraisItems.isEmpty {
@@ -136,7 +148,19 @@ struct FiltresView: View {
 
     @ViewBuilder
     private var structuresContent: some View {
+        let arrons = arrondissementsDisponibles
         let sources = Set(vm.structures.map { $0.source }).sorted()
+
+        if !arrons.isEmpty {
+            FilterSection("Arrondissements") {
+                ForEach(arrons, id: \.self) { n in
+                    CheckRow(
+                        label: arrondissementLabel(n),
+                        isOn: vm.selectedArrondissements.contains(n)
+                    ) { vm.selectedArrondissements.toggle(n) }
+                }
+            }
+        }
         if !sources.isEmpty {
             FilterSection("Sources") {
                 ForEach(sources, id: \.self) { source in
@@ -146,7 +170,8 @@ struct FiltresView: View {
                     ) { vm.selectedSources.toggle(source) }
                 }
             }
-        } else {
+        }
+        if arrons.isEmpty && sources.isEmpty {
             Text("Aucun filtre disponible")
                 .foregroundStyle(.secondary)
                 .font(.subheadline)
@@ -187,6 +212,19 @@ struct FiltresView: View {
         if !vm.frais.isEmpty { return vm.frais }
         return Set(vm.services.compactMap { $0.frais }).sorted()
             .map { DIReferentielItem(value: $0, label: $0, description: nil) }
+    }
+
+    private var arrondissementsDisponibles: [Int] {
+        let codes: [String?]
+        switch mode {
+        case .services:   codes = vm.services.map { $0.codePostal }
+        case .structures: codes = vm.structures.map { $0.codePostal }
+        }
+        return Set(codes.compactMap { AnnuaireViewModel.arrondissement(from: $0) }).sorted()
+    }
+
+    private func arrondissementLabel(_ n: Int) -> String {
+        n == 1 ? "1er arrondissement" : "\(n)e arrondissement"
     }
 
     private func extractParents(from items: [DIReferentielItem]) -> [DIReferentielItem] {

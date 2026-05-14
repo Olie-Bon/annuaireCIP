@@ -24,13 +24,16 @@ final class AnnuaireViewModel {
     // Active filters — structures
     var selectedSources: Set<String> = []
 
+    // Active filters — location
+    var selectedArrondissements: Set<Int> = []
+
     var hasActiveFilters: Bool {
         !selectedThematiques.isEmpty || !selectedPublics.isEmpty ||
         !selectedModesAccueil.isEmpty || !selectedTypesServices.isEmpty ||
-        !selectedFrais.isEmpty
+        !selectedFrais.isEmpty || !selectedArrondissements.isEmpty
     }
 
-    var hasActiveStructureFilters: Bool { !selectedSources.isEmpty }
+    var hasActiveStructureFilters: Bool { !selectedSources.isEmpty || !selectedArrondissements.isEmpty }
 
     func resetFilters() {
         selectedThematiques = []
@@ -38,9 +41,20 @@ final class AnnuaireViewModel {
         selectedModesAccueil = []
         selectedTypesServices = []
         selectedFrais = []
+        selectedArrondissements = []
     }
 
-    func resetStructureFilters() { selectedSources = [] }
+    func resetStructureFilters() {
+        selectedSources = []
+        selectedArrondissements = []
+    }
+
+    static func arrondissement(from codePostal: String?) -> Int? {
+        guard let cp = codePostal, cp.count == 5,
+              let num = Int(cp), num >= 13001, num <= 13016
+        else { return nil }
+        return num - 13000
+    }
 
     func filteredServices(query: String = "") -> [DIService] {
         var result = services
@@ -85,6 +99,12 @@ final class AnnuaireViewModel {
                 $0.frais.map { selectedFrais.contains($0) } ?? false
             }
         }
+        if !selectedArrondissements.isEmpty {
+            result = result.filter {
+                AnnuaireViewModel.arrondissement(from: $0.codePostal)
+                    .map { selectedArrondissements.contains($0) } ?? false
+            }
+        }
         return result.sorted {
             ($0.scoreQualite ?? -1) > ($1.scoreQualite ?? -1)
         }
@@ -101,6 +121,12 @@ final class AnnuaireViewModel {
         }
         if !selectedSources.isEmpty {
             result = result.filter { selectedSources.contains($0.source) }
+        }
+        if !selectedArrondissements.isEmpty {
+            result = result.filter {
+                AnnuaireViewModel.arrondissement(from: $0.codePostal)
+                    .map { selectedArrondissements.contains($0) } ?? false
+            }
         }
         return result.sorted {
             ($0.scoreQualite ?? -1) > ($1.scoreQualite ?? -1)
