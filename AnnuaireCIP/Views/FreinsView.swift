@@ -361,7 +361,8 @@ private struct ServiceSelectionSheet: View {
                     HStack(spacing: 12) {
                         Image(systemName: selectedIDs.contains(item.service.id)
                               ? "checkmark.circle.fill" : "circle")
-                            .foregroundStyle(selectedIDs.contains(item.service.id) ? .tint : .secondary)
+                            .foregroundStyle(selectedIDs.contains(item.service.id)
+                                             ? AnyShapeStyle(.tint) : AnyShapeStyle(.secondary))
                             .font(.title3)
 
                         VStack(alignment: .leading, spacing: 2) {
