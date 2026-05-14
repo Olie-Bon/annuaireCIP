@@ -1,5 +1,5 @@
 import Foundation
-import CoreLocation
+@preconcurrency import CoreLocation
 
 struct DIStructure: Codable, Identifiable {
     let source: String

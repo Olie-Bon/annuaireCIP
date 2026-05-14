@@ -68,10 +68,10 @@ struct ParcoursExportSheet: View {
         renderer.proposedSize = .init(width: 595, height: nil)
         renderer.scale = 1.0
 
-        var pdfData = Data()
+        let mutableData = NSMutableData()
         renderer.render { size, draw in
             var box = CGRect(origin: .zero, size: size)
-            guard let consumer = CGDataConsumer(data: &pdfData as CFMutableData),
+            guard let consumer = CGDataConsumer(data: mutableData),
                   let ctx = CGContext(consumer: consumer, mediaBox: &box, nil)
             else { return }
             ctx.beginPDFPage(nil)
@@ -79,6 +79,7 @@ struct ParcoursExportSheet: View {
             ctx.endPDFPage()
             ctx.closePDF()
         }
+        let pdfData = mutableData as Data
 
         let dateStr = DateFormatter.yyyyMMdd.string(from: Date())
         let url = FileManager.default.temporaryDirectory

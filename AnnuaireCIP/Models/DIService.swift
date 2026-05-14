@@ -1,5 +1,5 @@
 import Foundation
-import CoreLocation
+@preconcurrency import CoreLocation
 
 struct DIService: Codable, Identifiable {
     let source: String

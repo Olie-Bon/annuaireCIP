@@ -23,7 +23,7 @@ final class LocationService: NSObject {
         }
     }
 
-    private func isAuthorized(_ status: CLAuthorizationStatus) -> Bool {
+    nonisolated private func isAuthorized(_ status: CLAuthorizationStatus) -> Bool {
         if status == .authorizedAlways { return true }
         #if os(iOS) || os(watchOS) || os(tvOS)
         if status == .authorizedWhenInUse { return true }
