@@ -12,12 +12,13 @@ Permettre aux CIP et travailleurs sociaux d'accéder rapidement à l'annuaire de
 - Visualisation cartographique des structures et services
 - Navigation rapide entre structures et leurs services associés
 - Consultation des freins à l'emploi avec signaux de repérage, ressources terrain et notes CIP
-- Recherche de services data·inclusion filtrés par frein
+- Recherche de services data·inclusion géolocalisée depuis l'adresse d'un bénéficiaire, triée par distance
+- Composition et export PDF d'un parcours d'insertion personnalisé
 
 ## Stack technique
 
 - Swift / SwiftUI (macOS + iOS)
-- MapKit
+- MapKit / CoreLocation
 - Données : référentiel data·inclusion (structures et services d'insertion)
 
 ## Données
@@ -44,15 +45,18 @@ AnnuaireCIP/
 ├── Services/
 │   ├── NetworkService.swift    # Client async/await — API data·inclusion (pagination auto + référentiels)
 │   ├── MockDataService.swift   # Chargement depuis les JSON bundle (mode hors-ligne)
-│   └── FreinsService.swift     # Chargement de freins.json depuis le bundle
+│   ├── FreinsService.swift     # Chargement de freins.json depuis le bundle
+│   └── LocationService.swift   # CLLocationManager @Observable — GPS utilisateur (carte)
 ├── ViewModels/
-│   └── AnnuaireViewModel.swift # @Observable — chargement données + état des filtres actifs
+│   ├── AnnuaireViewModel.swift # @Observable — chargement données + état des filtres actifs
+│   └── ParcoursViewModel.swift # @Observable — adresse bénéficiaire, géocodage, entrées du parcours
 ├── Views/
 │   ├── FiltresView.swift          # Sidebar inspector filtres (thématiques, publics, modes, frais, sources)
 │   ├── StructureDetailView.swift  # Détail d'une structure (coordonnées, horaires, SIRET…)
 │   ├── ServiceDetailView.swift    # Détail d'un service (publics, frais, mobilisation…)
 │   ├── StructuresMapView.swift    # Carte fusionnée structures + services (MapKit)
-│   └── FreinsView.swift           # Liste des freins + détail (signaux, ressources, notes CIP, services DI)
+│   ├── FreinsView.swift           # Liste des freins + détail (signaux, ressources, notes CIP, services DI)
+│   └── ParcoursExportView.swift   # Sheet export + document PDF du parcours
 ├── ContentView.swift           # TabView : Structures | Services | Carte | Parcours
 └── Resources/
     ├── structures-marseille-dev.json
@@ -88,10 +92,13 @@ Attend les fichiers `frein-*.md` dans `/Users/olie/Documents/Corpus/`. Extrait a
 ### Modèles
 - [x] `DIStructure` — 20 champs mappés depuis l'API data·inclusion (`adresse_certifiee`, `score_qualite`, `doublons` inclus)
 - [x] `DIService` — 28 champs mappés (thématiques, publics, frais, modes de mobilisation…)
+- [x] `Frein` + `RessourceTerrain` — modèle issu du corpus CIP (23 fiches)
+- [x] `ParcoursEntry` — association frein ↔ services trouvés pour la composition d'un parcours
 
 ### Services réseau
 - [x] `NetworkService` — appels async/await avec pagination automatique (`/structures`, `/services`, `/search/services`). Chargement parallèle des 5 référentiels data·inclusion (`/api/v1/doc/thematiques`, `/publics`, `/modes-accueil`, `/types`, `/frais`). Token via `DI_API_TOKEN`.
 - [x] `MockDataService` — chargement des données réelles depuis le bundle JSON pour le développement hors-API
+- [x] `searchServices()` étendu — paramètres `lat`, `lon`, `code_commune`, `types`, `modes_accueil`, `frais`, `score_qualite_minimum`, `exclure_doublons`
 
 ### Interface
 - [x] Liste des structures avec barre de recherche (nom, commune, description)
@@ -101,19 +108,21 @@ Attend les fichiers `frein-*.md` dans `/Users/olie/Documents/Corpus/`. Extrait a
 - [x] Carte MapKit fusionnée — Picker segmenté Structures / Services, annotations colorées, callout avec lien vers le détail
 - [x] **Filtres avancés** — sidebar inspector (macOS) / sheet (iOS), filtres en temps réel :
   - Services : 16 catégories thématiques, publics cibles, modes d'accueil, types de service, frais
-  - Structures : filtre par source de données
+  - Structures : filtre par source de données, arrondissement
   - Fallback automatique sur les valeurs présentes dans les données si l'API référentiel est indisponible
-- [x] **Score qualité** — indicateur 4 barres style signal réseau (rouge → orange → jaune → vert) + pourcentage en caption, affiché à côté de la date de mise à jour dans les vues détail
-- [x] **Liens cliquables** dans les vues détail — téléphone (`tel:`), email (`mailto:`), site web et liens source (`https://`) s'ouvrent dans l'application système appropriée
-- [x] **Tri par score qualité** — `filteredStructures()` et `filteredServices()` retournent les résultats triés par `score_qualite` décroissant ; les fiches sans score apparaissent en bas de liste
-- [x] **Services associés** — section en bas de chaque fiche structure listant les services liés, avec icône orange et navigation vers le détail du service
-- [x] **Localisation utilisateur sur la carte** — point bleu temps réel via `UserAnnotation()`, bouton de centrage `MapUserLocationButton`
+- [x] **Score qualité** — indicateur 4 barres style signal réseau (rouge → orange → jaune → vert) + pourcentage en caption
+- [x] **Liens cliquables** — téléphone (`tel:`), email (`mailto:`), site web et liens source s'ouvrent dans l'app système
+- [x] **Tri par score qualité** — `filteredStructures()` et `filteredServices()` trient par `score_qualite` décroissant
+- [x] **Services associés** — section en bas de chaque fiche structure, navigation vers le détail du service
+- [x] **Localisation utilisateur sur la carte** — point bleu temps réel via `UserAnnotation()`, bouton de centrage
 
 ### Onglet Parcours — Freins à l'emploi
 - [x] **23 freins** issus du corpus CIP Marseille (fichiers `.md` Org-mode convertis via `convert_freins.py`)
 - [x] **Fiche frein** — description, signaux de repérage, freins associés, ressources terrain (nom, description, contact, site), notes CIP
-- [x] **Recherche de services data·inclusion** — bouton "Voir les services data·inclusion" dans chaque fiche, filtre par `thematiques_api` et `code_commune` (13055), résultats navigables inline
-- [x] **`SearchServiceResult`** — décodage du format `{service, distance?}` de `/api/v1/search/services`, paramètres étendus (`score_qualite_minimum`, `exclure_doublons`, `types`, `modes_accueil`, `frais`, `code_commune`)
+- [x] **Adresse bénéficiaire** — saisie libre géocodée via `CLGeocoder`, stockée dans `ParcoursViewModel` ; partagée entre tous les freins de la session
+- [x] **Recherche de services géolocalisée** — filtre dans `annuaireVM.services` (dept. 13 complet), matching thématique par préfixe hiérarchique (`slug == prefix || slug.hasPrefix(prefix + "--")`), tri par distance `CLLocation` si adresse saisie, sinon par score qualité
+- [x] **Composition du parcours** — bouton "Ajouter au parcours (N services)" dans chaque fiche frein ; checkmark sur les freins sélectionnés dans la liste ; bouton "Retirer"
+- [x] **Export / impression parcours** — sheet avec prévisualisation du document (date, adresse bénéficiaire, freins + services triés par distance) ; génération PDF via `ImageRenderer` (595 pt, format A4) ; partage via `ShareLink` (macOS : enregistrer / imprimer ; iOS : share sheet)
 
 ### À venir
 
