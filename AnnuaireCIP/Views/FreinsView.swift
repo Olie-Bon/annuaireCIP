@@ -154,6 +154,7 @@ struct FreinDetailView: View {
     @State private var isSearching = false
     @State private var searchError: String?
     @State private var showServices = false
+    @State private var showExport = false
 
     var body: some View {
         List {
@@ -289,6 +290,20 @@ struct FreinDetailView: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button { showExport = true } label: {
+                    Label(
+                        parcoursVM.entries.isEmpty ? "Exporter" : "Exporter (\(parcoursVM.entries.count))",
+                        systemImage: "square.and.arrow.up"
+                    )
+                }
+                .disabled(parcoursVM.entries.isEmpty)
+            }
+        }
+        .sheet(isPresented: $showExport) {
+            ParcoursExportSheet(vm: parcoursVM)
+        }
         .onChange(of: parcoursVM.coordonnees?.latitude) {
             showServices = false
             servicesResultats = []
