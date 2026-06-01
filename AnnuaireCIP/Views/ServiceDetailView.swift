@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ServiceDetailView: View {
     let service: DIService
+    @State private var showExport = false
 
     var body: some View {
         List {
@@ -117,6 +118,18 @@ struct ServiceDetailView: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    showExport = true
+                } label: {
+                    Label("Exporter PDF", systemImage: "doc.richtext")
+                }
+            }
+        }
+        .sheet(isPresented: $showExport) {
+            ServiceExportSheet(service: service)
+        }
     }
 }
 

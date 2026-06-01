@@ -3,6 +3,7 @@ import SwiftUI
 struct StructureDetailView: View {
     let structure: DIStructure
     var services: [DIService] = []
+    @State private var showExport = false
 
     var body: some View {
         List {
@@ -100,5 +101,17 @@ struct StructureDetailView: View {
         #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         #endif
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    showExport = true
+                } label: {
+                    Label("Exporter PDF", systemImage: "doc.richtext")
+                }
+            }
+        }
+        .sheet(isPresented: $showExport) {
+            StructureExportSheet(structure: structure, services: services)
+        }
     }
 }
